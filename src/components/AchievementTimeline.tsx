@@ -2,123 +2,147 @@
 import React from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { Calendar, Award, Code, Users, Zap, Star } from 'lucide-react';
+import { Award, Users, Briefcase, Presentation, GraduationCap, BookOpen, Lightbulb, Code } from 'lucide-react';
 
 const achievements = [
   {
-    year: '2024',
-    title: 'AI Innovation Award',
-    description: 'Recognized for developing an advanced AI tutoring system that improved student performance by 40%',
-    category: 'Recognition',
+    title: 'Microsoft Certified Expert Trainer',
+    description: 'Achieved Microsoft certification as an expert trainer, demonstrating advanced technical knowledge and training capabilities',
+    category: 'Certification',
     icon: Award,
-    color: 'from-yellow-500 to-orange-500'
+    color: 'from-blue-500 to-cyan-500'
   },
   {
-    year: '2023',
-    title: 'Blockchain Certification Program',
-    description: 'Successfully trained 100+ developers in smart contract development and DeFi protocols',
-    category: 'Training',
-    icon: Users,
-    color: 'from-blue-500 to-purple-500'
-  },
-  {
-    year: '2023',
-    title: 'Full-Stack E-Learning Platform',
-    description: 'Built and deployed a comprehensive learning management system serving 10,000+ students',
-    category: 'Development',
-    icon: Code,
+    title: 'Certificate of Service by Data Science Nigeria (DSN)',
+    description: 'Recognized for contributing to Free AI Classes in Every City 2024 initiative across Nigeria',
+    category: 'Certification',
+    icon: Award,
     color: 'from-green-500 to-teal-500'
   },
   {
-    year: '2022',
-    title: 'Machine Learning Specialization',
-    description: 'Completed advanced ML certification and implemented 15+ production AI models',
-    category: 'Education',
-    icon: Zap,
+    title: 'Facilitator, Free AI Classes in Every City',
+    description: 'Led Nigeria-wide initiative by Data Science Nigeria, making AI education accessible nationwide',
+    category: 'Facilitation',
+    icon: Users,
     color: 'from-purple-500 to-pink-500'
   },
   {
-    year: '2022',
-    title: 'FinTech Security Implementation',
-    description: 'Led the development of a secure banking application with advanced authentication systems',
-    category: 'Security',
-    icon: Star,
-    color: 'from-red-500 to-orange-500'
-  },
-  {
-    year: '2021',
-    title: 'Computer Engineering Degree',
-    description: 'Graduated from Ahmadu Bello University with first-class honors in Computer Engineering',
-    category: 'Education',
-    icon: Award,
+    title: 'AI in Education Workshops',
+    description: 'Conducted comprehensive workshops on implementing artificial intelligence in educational settings',
+    category: 'Facilitation',
+    icon: GraduationCap,
     color: 'from-indigo-500 to-blue-500'
   },
   {
-    year: '2020',
-    title: 'First Production AI System',
-    description: 'Deployed my first machine learning model in production, processing 1M+ transactions daily',
-    category: 'Milestone',
-    icon: Zap,
+    title: 'AI, STEM, and Coding for Kids',
+    description: 'Built and taught innovative programs introducing children to artificial intelligence, STEM concepts, and programming',
+    category: 'Facilitation',
+    icon: Lightbulb,
+    color: 'from-orange-500 to-red-500'
+  },
+  {
+    title: 'Git Fundamentals Course Development',
+    description: 'Developed comprehensive Git course including curriculum, slides, quizzes, and final project materials',
+    category: 'Facilitation',
+    icon: BookOpen,
     color: 'from-cyan-500 to-blue-500'
+  },
+  {
+    title: 'Founder, Kayan Gwari Agro-tech',
+    description: 'Founded agricultural technology company through Alhibb Tech, focusing on innovative farming solutions',
+    category: 'Entrepreneurship',
+    icon: Briefcase,
+    color: 'from-emerald-500 to-green-500'
+  },
+  {
+    title: 'Credit Card Scoring App Presentation',
+    description: 'Presented innovative Credit Card Scoring Application at Data Scientist Network Nigeria (DSN) event',
+    category: 'Projects',
+    icon: Presentation,
+    color: 'from-violet-500 to-purple-500'
   }
 ];
 
 export const AchievementTimeline: React.FC = () => {
+  const categoryGroups = achievements.reduce((groups, achievement) => {
+    const category = achievement.category;
+    if (!groups[category]) {
+      groups[category] = [];
+    }
+    groups[category].push(achievement);
+    return groups;
+  }, {} as Record<string, typeof achievements>);
+
+  const categoryColors = {
+    'Certification': 'from-blue-400 to-cyan-400',
+    'Facilitation': 'from-purple-400 to-pink-400',
+    'Entrepreneurship': 'from-green-400 to-emerald-400',
+    'Projects': 'from-orange-400 to-red-400'
+  };
+
+  const categoryIcons = {
+    'Certification': Award,
+    'Facilitation': Users,
+    'Entrepreneurship': Briefcase,
+    'Projects': Code
+  };
+
   return (
     <section className="py-24 bg-slate-800/30">
       <div className="max-w-6xl mx-auto px-6 lg:px-12">
         <div className="text-center mb-20">
           <h2 className="text-5xl font-black mb-6 bg-gradient-to-r from-orange-400 to-red-400 bg-clip-text text-transparent">
-            Achievement Timeline
+            Professional Journey
           </h2>
           <p className="text-xl text-slate-300 max-w-3xl mx-auto">
-            A journey through key milestones, achievements, and innovations that have shaped my career in technology
+            A comprehensive overview of certifications, training initiatives, entrepreneurial ventures, and key project presentations
           </p>
         </div>
 
-        <div className="relative">
-          {/* Timeline line */}
-          <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-gradient-to-b from-orange-500 via-purple-500 to-blue-500"></div>
+        <div className="space-y-16">
+          {Object.entries(categoryGroups).map(([category, items]) => {
+            const CategoryIcon = categoryIcons[category as keyof typeof categoryIcons];
+            const categoryGradient = categoryColors[category as keyof typeof categoryColors];
+            
+            return (
+              <div key={category} className="space-y-8">
+                <div className="flex items-center space-x-4 mb-8">
+                  <div className={`w-12 h-12 rounded-2xl bg-gradient-to-r ${categoryGradient} flex items-center justify-center`}>
+                    <CategoryIcon className="h-6 w-6 text-white" />
+                  </div>
+                  <h3 className={`text-3xl font-bold bg-gradient-to-r ${categoryGradient} bg-clip-text text-transparent`}>
+                    {category}
+                  </h3>
+                </div>
 
-          <div className="space-y-12">
-            {achievements.map((achievement, index) => (
-              <div key={index} className="relative flex items-start">
-                {/* Timeline dot */}
-                <div className={`absolute left-6 w-4 h-4 rounded-full bg-gradient-to-r ${achievement.color} border-4 border-slate-900 z-10`}></div>
-                
-                {/* Content */}
-                <div className="ml-16 flex-1">
-                  <Card className="bg-gradient-to-br from-slate-800/50 to-slate-700/30 border-slate-600/50 hover:border-orange-500/50 transition-all duration-500 hover:scale-[1.02]">
-                    <CardContent className="p-8">
-                      <div className="flex items-start justify-between mb-4">
-                        <div className="flex items-center space-x-4">
-                          <div className={`w-12 h-12 rounded-2xl bg-gradient-to-r ${achievement.color} flex items-center justify-center`}>
-                            <achievement.icon className="h-6 w-6 text-white" />
+                <div className="grid md:grid-cols-2 gap-6">
+                  {items.map((achievement, index) => (
+                    <Card key={index} className="bg-gradient-to-br from-slate-800/50 to-slate-700/30 border-slate-600/50 hover:border-orange-500/50 transition-all duration-500 hover:scale-[1.02]">
+                      <CardContent className="p-6">
+                        <div className="flex items-start space-x-4 mb-4">
+                          <div className={`w-10 h-10 rounded-xl bg-gradient-to-r ${achievement.color} flex items-center justify-center flex-shrink-0`}>
+                            <achievement.icon className="h-5 w-5 text-white" />
                           </div>
-                          <div>
-                            <div className="flex items-center space-x-3 mb-2">
-                              <h3 className="text-2xl font-bold text-white">{achievement.title}</h3>
-                              <Badge variant="outline" className="border-orange-500/30 text-orange-400">
+                          <div className="flex-1">
+                            <div className="flex items-start justify-between mb-2">
+                              <h4 className="text-xl font-bold text-white leading-tight">{achievement.title}</h4>
+                              <Badge variant="outline" className="border-orange-500/30 text-orange-400 ml-2">
                                 {achievement.category}
                               </Badge>
                             </div>
-                            <div className="flex items-center text-slate-400">
-                              <Calendar className="h-4 w-4 mr-2" />
-                              <span className="font-semibold">{achievement.year}</span>
-                            </div>
                           </div>
                         </div>
-                      </div>
-                      
-                      <p className="text-slate-300 leading-relaxed text-lg">
-                        {achievement.description}
-                      </p>
-                    </CardContent>
-                  </Card>
+                        
+                        <p className="text-slate-300 leading-relaxed">
+                          {achievement.description}
+                        </p>
+                      </CardContent>
+                    </Card>
+                  ))}
                 </div>
               </div>
-            ))}
-          </div>
+            );
+          })}
         </div>
 
         <div className="text-center mt-16">
@@ -126,12 +150,12 @@ export const AchievementTimeline: React.FC = () => {
             <CardContent className="p-8">
               <div className="flex items-center space-x-4">
                 <div className="w-16 h-16 bg-gradient-to-r from-orange-500 to-red-500 rounded-full flex items-center justify-center">
-                  <Star className="h-8 w-8 text-white" />
+                  <GraduationCap className="h-8 w-8 text-white" />
                 </div>
                 <div className="text-left">
-                  <h3 className="text-2xl font-bold text-white mb-2">What's Next?</h3>
+                  <h3 className="text-2xl font-bold text-white mb-2">Continuous Growth</h3>
                   <p className="text-slate-300">
-                    Building the future with AI, one innovation at a time
+                    Committed to advancing AI education and technological innovation
                   </p>
                 </div>
               </div>
