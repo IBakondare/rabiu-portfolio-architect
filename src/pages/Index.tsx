@@ -1,6 +1,6 @@
 
-import { useState } from 'react';
-import { ArrowRight, Github, Linkedin, Twitter, Mail, Phone } from 'lucide-react';
+import { useState, useEffect } from 'react';
+import { ArrowRight, Github, Linkedin, Twitter, Mail, Phone, Code, Brain, Database, Server, Smartphone, Globe, ChevronDown, ExternalLink, Zap, Users, Award, BookOpen } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -8,107 +8,170 @@ import { Link } from 'react-router-dom';
 
 const Index = () => {
   const [activeSection, setActiveSection] = useState('home');
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const projects = [
     {
       id: 1,
       title: "AI-Driven Tutoring System",
-      description: "Intelligent tutoring platform using machine learning algorithms to personalize learning experiences.",
-      tech: ["Python", "Flask", "TensorFlow", "React"],
-      image: "https://images.unsplash.com/photo-1649972904349-6e44c42644a7?w=400&h=250&fit=crop&crop=faces"
+      description: "Intelligent tutoring platform using machine learning algorithms to personalize learning experiences for enhanced educational outcomes.",
+      tech: ["Python", "TensorFlow", "Flask", "React", "PostgreSQL"],
+      category: "Artificial Intelligence",
+      complexity: "Advanced",
+      image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=600&h=400&fit=crop",
+      gradient: "from-blue-600 to-cyan-500"
     },
     {
       id: 2,
       title: "Blockchain Supply Chain",
-      description: "Decentralized supply chain management system ensuring transparency and traceability.",
-      tech: ["Node.js", "Ethereum", "React", "TypeScript"],
-      image: "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?w=400&h=250&fit=crop"
+      description: "Decentralized supply chain management system ensuring transparency and traceability throughout the product lifecycle.",
+      tech: ["Node.js", "Ethereum", "Solidity", "React", "TypeScript"],
+      category: "Blockchain",
+      complexity: "Expert",
+      image: "https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=600&h=400&fit=crop",
+      gradient: "from-purple-600 to-pink-500"
     },
     {
       id: 3,
       title: "E-Learning Platform",
-      description: "Comprehensive online learning management system with interactive features.",
-      tech: ["Next.js", "TypeScript", "Node.js", "MongoDB"],
-      image: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=400&h=250&fit=crop"
+      description: "Comprehensive online learning management system with interactive features and advanced analytics for educators.",
+      tech: ["Next.js", "TypeScript", "Node.js", "MongoDB", "AWS"],
+      category: "EdTech",
+      complexity: "Advanced",
+      image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=600&h=400&fit=crop",
+      gradient: "from-green-600 to-teal-500"
     },
     {
       id: 4,
       title: "Smart Analytics Dashboard",
-      description: "Real-time data visualization and analytics platform for business intelligence.",
-      tech: ["React", "Python", "Flask", "PostgreSQL"],
-      image: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=400&h=250&fit=crop"
+      description: "Real-time data visualization platform providing comprehensive business intelligence for data-driven decisions.",
+      tech: ["React", "D3.js", "Python", "Flask", "PostgreSQL"],
+      category: "Data Analytics",
+      complexity: "Advanced",
+      image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop",
+      gradient: "from-orange-600 to-red-500"
     },
     {
       id: 5,
-      title: "Mobile Banking App",
-      description: "Secure mobile banking application with biometric authentication.",
-      tech: ["React Native", "Node.js", "MongoDB", "TypeScript"],
-      image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=400&h=250&fit=crop"
+      title: "FinTech Banking Solution",
+      description: "Secure web-based banking application with advanced authentication and comprehensive financial management.",
+      tech: ["React", "Node.js", "MongoDB", "TypeScript", "JWT"],
+      category: "Financial Technology",
+      complexity: "Expert",
+      image: "https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=600&h=400&fit=crop",
+      gradient: "from-indigo-600 to-blue-500"
     },
     {
       id: 6,
       title: "IoT Monitoring System",
-      description: "Internet of Things platform for monitoring and controlling smart devices.",
-      tech: ["Python", "Flask", "React", "MQTT"],
-      image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=400&h=250&fit=crop"
+      description: "Internet of Things platform for monitoring and controlling smart devices with real-time data processing.",
+      tech: ["Python", "Flask", "React", "MQTT", "InfluxDB"],
+      category: "Internet of Things",
+      complexity: "Advanced",
+      image: "https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=600&h=400&fit=crop",
+      gradient: "from-teal-600 to-green-500"
     },
     {
       id: 7,
       title: "Social Media API",
-      description: "RESTful API for social media platform with real-time messaging capabilities.",
-      tech: ["Node.js", "TypeScript", "PostgreSQL", "Socket.io"],
-      image: "https://images.unsplash.com/photo-1649972904349-6e44c42644a7?w=400&h=250&fit=crop&crop=faces"
+      description: "Comprehensive RESTful API for social media platforms with real-time messaging and content management.",
+      tech: ["Node.js", "TypeScript", "PostgreSQL", "Redis", "Socket.io"],
+      category: "API Development",
+      complexity: "Advanced",
+      image: "https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=600&h=400&fit=crop",
+      gradient: "from-pink-600 to-rose-500"
     },
     {
       id: 8,
       title: "AI Chatbot Service",
-      description: "Natural language processing chatbot for customer service automation.",
-      tech: ["Python", "NLP", "Flask", "React"],
-      image: "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?w=400&h=250&fit=crop"
+      description: "Natural language processing chatbot for customer service automation with advanced conversation management.",
+      tech: ["Python", "NLP", "TensorFlow", "Flask", "React"],
+      category: "Artificial Intelligence",
+      complexity: "Expert",
+      image: "https://images.unsplash.com/photo-1531746790731-6c087fecd65a?w=600&h=400&fit=crop",
+      gradient: "from-violet-600 to-purple-500"
     },
     {
       id: 9,
       title: "Web Scraping Tool",
-      description: "Automated data extraction tool with web scraping and data processing capabilities.",
-      tech: ["Python", "Scrapy", "PostgreSQL", "React"],
-      image: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=400&h=250&fit=crop"
+      description: "Automated data extraction tool with intelligent parsing and large-scale data collection capabilities.",
+      tech: ["Python", "Scrapy", "BeautifulSoup", "PostgreSQL", "React"],
+      category: "Data Engineering",
+      complexity: "Advanced",
+      image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=400&fit=crop",
+      gradient: "from-amber-600 to-orange-500"
     },
     {
       id: 10,
       title: "Cloud Storage Solution",
-      description: "Secure cloud storage platform with file sharing and collaboration features.",
-      tech: ["Next.js", "Node.js", "AWS", "TypeScript"],
-      image: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=400&h=250&fit=crop"
+      description: "Secure cloud storage platform with advanced file sharing and enterprise-grade collaboration features.",
+      tech: ["Next.js", "Node.js", "AWS S3", "TypeScript", "Redis"],
+      category: "Cloud Technology",
+      complexity: "Expert",
+      image: "https://images.unsplash.com/photo-1544197150-b99a580bb7a8?w=600&h=400&fit=crop",
+      gradient: "from-sky-600 to-blue-500"
     }
   ];
 
   const skills = [
-    "Python", "Flask", "React", "Next.js", "TypeScript", "Node.js", "PHP",
-    "Machine Learning", "AI", "Blockchain", "MongoDB", "PostgreSQL",
-    "AWS", "Docker", "Git", "REST APIs"
+    { name: "Python", level: 95, icon: Code, category: "Backend" },
+    { name: "Flask", level: 90, icon: Server, category: "Backend" },
+    { name: "React", level: 92, icon: Globe, category: "Frontend" },
+    { name: "Next.js", level: 88, icon: Globe, category: "Frontend" },
+    { name: "TypeScript", level: 87, icon: Code, category: "Frontend" },
+    { name: "Node.js", level: 89, icon: Server, category: "Backend" },
+    { name: "PHP", level: 78, icon: Code, category: "Backend" },
+    { name: "Machine Learning", level: 93, icon: Brain, category: "AI/ML" },
+    { name: "AI", level: 94, icon: Brain, category: "AI/ML" },
+    { name: "Blockchain", level: 85, icon: Database, category: "Web3" },
+    { name: "MongoDB", level: 86, icon: Database, category: "Database" },
+    { name: "PostgreSQL", level: 88, icon: Database, category: "Database" },
+    { name: "AWS", level: 82, icon: Server, category: "Cloud" },
+    { name: "Docker", level: 80, icon: Server, category: "DevOps" },
+    { name: "Git", level: 90, icon: Code, category: "Tools" },
+    { name: "REST APIs", level: 91, icon: Server, category: "Backend" }
   ];
 
   const services = [
     {
       title: "AI & Machine Learning Training",
-      description: "Comprehensive training programs on AI, ML, and data science technologies.",
-      icon: "🤖"
+      description: "Comprehensive training programs on cutting-edge AI, machine learning, and data science technologies with hands-on projects.",
+      icon: Brain,
+      features: ["Deep Learning", "Neural Networks", "Computer Vision", "NLP"]
     },
     {
       title: "Software Development Consultancy",
-      description: "Expert guidance on software architecture, development best practices, and technology selection.",
-      icon: "💻"
+      description: "Expert guidance on software architecture, development best practices, and technology selection for scalable solutions.",
+      icon: Code,
+      features: ["Architecture Design", "Code Review", "Tech Stack Selection", "Performance Optimization"]
     },
     {
       title: "Technical Workshops",
-      description: "Hands-on workshops covering modern web development, blockchain, and emerging technologies.",
-      icon: "🎯"
+      description: "Intensive hands-on workshops covering modern web development, blockchain technology, and emerging tech trends.",
+      icon: BookOpen,
+      features: ["Web Development", "Blockchain", "API Development", "Cloud Computing"]
     },
     {
       title: "Code Review & Mentoring",
-      description: "Professional code review services and one-on-one mentoring for developers.",
-      icon: "👨‍🏫"
+      description: "Professional code review services and personalized one-on-one mentoring for developers at all levels.",
+      icon: Users,
+      features: ["Code Quality", "Best Practices", "Career Guidance", "Technical Mentorship"]
     }
+  ];
+
+  const stats = [
+    { number: "50+", label: "Projects Completed", icon: Award },
+    { number: "100+", label: "Students Trained", icon: Users },
+    { number: "5+", label: "Years Experience", icon: Zap },
+    { number: "15+", label: "Technologies Mastered", icon: Code }
   ];
 
   const scrollToSection = (sectionId: string) => {
@@ -118,19 +181,23 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
+    <div className="min-h-screen bg-slate-900 text-white">
       {/* Navigation */}
-      <nav className="fixed top-0 w-full bg-white/80 backdrop-blur-md z-50 border-b border-gray-200">
+      <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ${
+        isScrolled ? 'bg-slate-900/95 backdrop-blur-md border-b border-slate-700' : 'bg-transparent'
+      }`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center py-4">
-            <div className="text-2xl font-bold text-gray-900">Ibrahim Rabiu</div>
+            <div className="text-2xl font-bold bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
+              Ibrahim Rabiu
+            </div>
             <div className="hidden md:flex space-x-8">
               {['Home', 'About', 'Projects', 'Services', 'Contact'].map((item) => (
                 <button
                   key={item}
                   onClick={() => scrollToSection(item.toLowerCase())}
-                  className={`text-sm font-medium transition-colors hover:text-blue-600 ${
-                    activeSection === item.toLowerCase() ? 'text-blue-600' : 'text-gray-700'
+                  className={`text-sm font-medium transition-colors hover:text-blue-400 ${
+                    activeSection === item.toLowerCase() ? 'text-blue-400' : 'text-slate-300'
                   }`}
                 >
                   {item}
@@ -142,96 +209,140 @@ const Index = () => {
       </nav>
 
       {/* Hero Section */}
-      <section id="home" className="pt-20 pb-16 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center py-20">
-            <div className="mb-8">
-              <div className="w-32 h-32 bg-gradient-to-br from-blue-600 to-purple-600 rounded-full mx-auto mb-6 flex items-center justify-center text-white text-4xl font-bold">
-                IR
+      <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-blue-900/20 to-slate-900"></div>
+        <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="none" fill-rule="evenodd"%3E%3Cg fill="%23334155" fill-opacity="0.1"%3E%3Ccircle cx="30" cy="30" r="2"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')]"></div>
+        
+        <div className="relative z-10 text-center px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto">
+          <div className="mb-8">
+            <div className="w-40 h-40 bg-gradient-to-br from-blue-500 via-purple-500 to-cyan-500 rounded-full mx-auto mb-8 flex items-center justify-center text-white text-5xl font-bold shadow-2xl animate-pulse">
+              IR
+            </div>
+          </div>
+          
+          <h1 className="text-6xl md:text-8xl font-bold mb-6 bg-gradient-to-r from-blue-400 via-purple-400 to-cyan-400 bg-clip-text text-transparent animate-fade-in">
+            Ibrahim Rabiu
+          </h1>
+          
+          <div className="flex flex-wrap justify-center gap-4 mb-8">
+            <Badge className="bg-blue-500/20 text-blue-300 border-blue-500/30 px-4 py-2 text-lg">
+              AI Expert
+            </Badge>
+            <Badge className="bg-purple-500/20 text-purple-300 border-purple-500/30 px-4 py-2 text-lg">
+              Software Developer
+            </Badge>
+            <Badge className="bg-cyan-500/20 text-cyan-300 border-cyan-500/30 px-4 py-2 text-lg">
+              Technical Trainer
+            </Badge>
+          </div>
+          
+          <p className="text-xl md:text-2xl text-slate-300 mb-8 max-w-4xl mx-auto leading-relaxed">
+            Transforming ideas into intelligent solutions through cutting-edge AI, blockchain technology, 
+            and scalable web applications. Building the future, one algorithm at a time.
+          </p>
+          
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-12 max-w-3xl mx-auto">
+            {stats.map((stat, index) => (
+              <div key={index} className="text-center">
+                <stat.icon className="h-8 w-8 mx-auto mb-2 text-blue-400" />
+                <div className="text-3xl font-bold text-white">{stat.number}</div>
+                <div className="text-sm text-slate-400">{stat.label}</div>
               </div>
-            </div>
-            <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6 animate-fade-in">
-              Ibrahim Rabiu
-            </h1>
-            <p className="text-xl md:text-2xl text-gray-600 mb-8 max-w-3xl mx-auto animate-fade-in">
-              AI Expert • Software Developer • Technical Trainer
-            </p>
-            <p className="text-lg text-gray-500 mb-12 max-w-4xl mx-auto animate-fade-in">
-              Passionate about leveraging artificial intelligence and cutting-edge technologies to solve complex problems. 
-              With expertise in machine learning, blockchain, and full-stack development, I help organizations transform 
-              their digital landscape through innovative solutions and comprehensive training programs.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in">
-              <Button 
-                size="lg" 
-                onClick={() => scrollToSection('projects')}
-                className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3"
-              >
-                View My Work
-                <ArrowRight className="ml-2 h-4 w-4" />
-              </Button>
-              <Button 
-                variant="outline" 
-                size="lg"
-                onClick={() => scrollToSection('contact')}
-                className="border-blue-600 text-blue-600 hover:bg-blue-50 px-8 py-3"
-              >
-                Get In Touch
-              </Button>
-            </div>
+            ))}
+          </div>
+          
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Button 
+              size="lg" 
+              onClick={() => scrollToSection('projects')}
+              className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-8 py-3 text-lg"
+            >
+              Explore My Work
+              <ArrowRight className="ml-2 h-5 w-5" />
+            </Button>
+            <Button 
+              variant="outline" 
+              size="lg"
+              onClick={() => scrollToSection('contact')}
+              className="border-blue-500 text-blue-400 hover:bg-blue-500/10 px-8 py-3 text-lg"
+            >
+              Get In Touch
+            </Button>
+          </div>
+          
+          <div className="mt-12 animate-bounce">
+            <ChevronDown className="h-8 w-8 mx-auto text-slate-400" />
           </div>
         </div>
       </section>
 
       {/* About Section */}
-      <section id="about" className="py-20 bg-white">
+      <section id="about" className="py-20 bg-slate-800/50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">About Me</h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Building the future through AI and innovative software solutions
+            <h2 className="text-5xl font-bold mb-4 bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
+              About Me
+            </h2>
+            <p className="text-xl text-slate-300 max-w-3xl mx-auto">
+              Crafting intelligent solutions that bridge the gap between complex technology and real-world impact
             </p>
           </div>
           
-          <div className="grid md:grid-cols-2 gap-12 items-center">
-            <div>
-              <h3 className="text-2xl font-semibold text-gray-900 mb-6">My Journey</h3>
-              <p className="text-gray-600 mb-6 text-lg leading-relaxed">
-                I am a dedicated software developer and AI enthusiast with a strong educational foundation from 
-                Ahmadu Bello University. My passion lies in creating intelligent systems that make a meaningful 
-                impact on people's lives and businesses.
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
+            <div className="space-y-6">
+              <h3 className="text-3xl font-semibold text-white mb-6">My Journey</h3>
+              <p className="text-slate-300 text-lg leading-relaxed">
+                As a passionate AI expert and software developer, I specialize in creating intelligent systems 
+                that solve complex real-world problems. My journey began at Ahmadu Bello University, where I 
+                developed a strong foundation in computer science and discovered my passion for artificial intelligence.
               </p>
-              <p className="text-gray-600 mb-6 text-lg leading-relaxed">
-                Throughout my career, I have specialized in developing AI-driven solutions, blockchain applications, 
-                and comprehensive training programs that empower individuals and organizations to harness the power 
-                of modern technology.
+              <p className="text-slate-300 text-lg leading-relaxed">
+                Over the years, I've mastered the art of building scalable web applications, implementing machine 
+                learning solutions, and creating blockchain-based systems. My expertise spans from backend 
+                development with Python and Node.js to modern frontend frameworks like React and Next.js.
               </p>
-              <p className="text-gray-600 text-lg leading-relaxed">
-                When I'm not coding, I enjoy sharing knowledge through workshops, mentoring upcoming developers, 
-                and staying at the forefront of emerging technologies in artificial intelligence and software development.
+              <p className="text-slate-300 text-lg leading-relaxed">
+                Beyond development, I'm passionate about sharing knowledge through comprehensive training programs, 
+                helping individuals and organizations harness the power of AI and modern web technologies.
               </p>
+              
+              <div className="bg-slate-700/50 p-6 rounded-lg border border-slate-600">
+                <h4 className="text-xl font-semibold text-white mb-4 flex items-center">
+                  <Award className="mr-2 h-5 w-5 text-blue-400" />
+                  Education
+                </h4>
+                <p className="font-medium text-blue-400">Ahmadu Bello University</p>
+                <p className="text-slate-300">Bachelor's Degree in Computer Science</p>
+              </div>
             </div>
             
-            <div>
-              <h3 className="text-2xl font-semibold text-gray-900 mb-6">Skills & Technologies</h3>
-              <div className="flex flex-wrap gap-2">
-                {skills.map((skill) => (
-                  <Badge 
-                    key={skill} 
-                    variant="secondary" 
-                    className="bg-blue-100 text-blue-800 hover:bg-blue-200 transition-colors px-3 py-1 text-sm"
-                  >
-                    {skill}
-                  </Badge>
+            <div className="space-y-8">
+              <h3 className="text-3xl font-semibold text-white mb-6">Technical Expertise</h3>
+              <div className="space-y-6">
+                {['Frontend', 'Backend', 'AI/ML', 'Database', 'Cloud', 'Tools'].map((category) => (
+                  <div key={category}>
+                    <h4 className="text-lg font-semibold text-blue-400 mb-3">{category}</h4>
+                    <div className="space-y-3">
+                      {skills.filter(skill => skill.category === category).map((skill) => (
+                        <div key={skill.name} className="flex items-center justify-between">
+                          <div className="flex items-center">
+                            <skill.icon className="h-4 w-4 mr-2 text-slate-400" />
+                            <span className="text-slate-300">{skill.name}</span>
+                          </div>
+                          <div className="flex items-center space-x-2">
+                            <div className="w-24 bg-slate-700 rounded-full h-2">
+                              <div 
+                                className="bg-gradient-to-r from-blue-500 to-cyan-500 h-2 rounded-full transition-all duration-1000"
+                                style={{ width: `${skill.level}%` }}
+                              ></div>
+                            </div>
+                            <span className="text-sm text-slate-400 w-8">{skill.level}%</span>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
                 ))}
-              </div>
-              
-              <div className="mt-8">
-                <h4 className="text-lg font-semibold text-gray-900 mb-4">Education</h4>
-                <div className="bg-gray-50 p-4 rounded-lg">
-                  <p className="font-medium text-gray-900">Ahmadu Bello University</p>
-                  <p className="text-gray-600">Bachelor's Degree in Computer Science</p>
-                </div>
               </div>
             </div>
           </div>
@@ -239,71 +350,105 @@ const Index = () => {
       </section>
 
       {/* Projects Section */}
-      <section id="projects" className="py-20 bg-gradient-to-br from-gray-50 to-blue-50">
+      <section id="projects" className="py-20 bg-slate-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">Featured Projects</h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              A showcase of innovative solutions combining AI, blockchain, and modern web technologies
+            <h2 className="text-5xl font-bold mb-4 bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
+              Featured Projects
+            </h2>
+            <p className="text-xl text-slate-300 max-w-3xl mx-auto">
+              Innovative solutions combining AI, blockchain, and modern web technologies to solve real-world challenges
             </p>
           </div>
           
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {projects.map((project) => (
-              <Card key={project.id} className="hover:shadow-xl transition-all duration-300 hover:scale-105 cursor-pointer group">
-                <Link to={`/project/${project.id}`}>
-                  <div className="aspect-video bg-gradient-to-br from-blue-100 to-purple-100 rounded-t-lg overflow-hidden">
+              <Link key={project.id} to={`/project/${project.id}`}>
+                <Card className="bg-slate-800/50 border-slate-700 hover:border-blue-500/50 transition-all duration-300 hover:scale-105 cursor-pointer group h-full">
+                  <div className="relative overflow-hidden rounded-t-lg">
+                    <div className={`absolute inset-0 bg-gradient-to-br ${project.gradient} opacity-90`}></div>
                     <img 
                       src={project.image} 
                       alt={project.title}
-                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                      className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-300"
                     />
+                    <div className="absolute top-4 left-4">
+                      <Badge className="bg-black/50 text-white border-none">
+                        {project.category}
+                      </Badge>
+                    </div>
+                    <div className="absolute top-4 right-4">
+                      <Badge variant="outline" className="bg-white/20 text-white border-white/30">
+                        {project.complexity}
+                      </Badge>
+                    </div>
+                    <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors duration-300"></div>
                   </div>
+                  
                   <CardHeader>
-                    <CardTitle className="text-xl text-gray-900 group-hover:text-blue-600 transition-colors">
+                    <CardTitle className="text-xl text-white group-hover:text-blue-400 transition-colors flex items-center justify-between">
                       {project.title}
+                      <ExternalLink className="h-4 w-4 opacity-0 group-hover:opacity-100 transition-opacity" />
                     </CardTitle>
-                    <CardDescription className="text-gray-600">
+                    <CardDescription className="text-slate-300 line-clamp-3">
                       {project.description}
                     </CardDescription>
                   </CardHeader>
+                  
                   <CardContent>
-                    <div className="flex flex-wrap gap-2">
-                      {project.tech.map((tech) => (
-                        <Badge key={tech} variant="outline" className="text-xs">
+                    <div className="flex flex-wrap gap-2 mb-4">
+                      {project.tech.slice(0, 4).map((tech) => (
+                        <Badge key={tech} variant="secondary" className="bg-slate-700 text-slate-300 border-slate-600 text-xs">
                           {tech}
                         </Badge>
                       ))}
+                      {project.tech.length > 4 && (
+                        <Badge variant="secondary" className="bg-slate-700 text-slate-300 border-slate-600 text-xs">
+                          +{project.tech.length - 4}
+                        </Badge>
+                      )}
                     </div>
                   </CardContent>
-                </Link>
-              </Card>
+                </Card>
+              </Link>
             ))}
           </div>
         </div>
       </section>
 
       {/* Services Section */}
-      <section id="services" className="py-20 bg-white">
+      <section id="services" className="py-20 bg-slate-800/30">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">Services</h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Empowering individuals and organizations through expert training and consultancy
+            <h2 className="text-5xl font-bold mb-4 bg-gradient-to-r from-green-400 to-teal-400 bg-clip-text text-transparent">
+              Services
+            </h2>
+            <p className="text-xl text-slate-300 max-w-3xl mx-auto">
+              Empowering individuals and organizations through expert training, consultancy, and technical guidance
             </p>
           </div>
           
           <div className="grid md:grid-cols-2 gap-8">
             {services.map((service, index) => (
-              <Card key={index} className="hover:shadow-lg transition-shadow duration-300">
+              <Card key={index} className="bg-slate-800/50 border-slate-700 hover:border-green-500/50 transition-all duration-300 hover:scale-105">
                 <CardHeader className="text-center">
-                  <div className="text-4xl mb-4">{service.icon}</div>
-                  <CardTitle className="text-xl text-gray-900">{service.title}</CardTitle>
+                  <div className="w-16 h-16 bg-gradient-to-br from-green-500 to-teal-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <service.icon className="h-8 w-8 text-white" />
+                  </div>
+                  <CardTitle className="text-2xl text-white">{service.title}</CardTitle>
                 </CardHeader>
-                <CardContent>
-                  <CardDescription className="text-center text-gray-600 text-base">
+                <CardContent className="space-y-4">
+                  <p className="text-slate-300 text-center leading-relaxed">
                     {service.description}
-                  </CardDescription>
+                  </p>
+                  <div className="grid grid-cols-2 gap-2">
+                    {service.features.map((feature) => (
+                      <div key={feature} className="flex items-center text-sm text-slate-400">
+                        <div className="w-1 h-1 bg-green-400 rounded-full mr-2"></div>
+                        {feature}
+                      </div>
+                    ))}
+                  </div>
                 </CardContent>
               </Card>
             ))}
@@ -312,76 +457,108 @@ const Index = () => {
       </section>
 
       {/* Contact Section */}
-      <section id="contact" className="py-20 bg-gradient-to-br from-blue-600 to-purple-700 text-white">
+      <section id="contact" className="py-20 bg-gradient-to-br from-slate-900 via-blue-900/20 to-slate-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold mb-4">Let's Connect</h2>
-            <p className="text-xl opacity-90 max-w-3xl mx-auto">
+            <h2 className="text-5xl font-bold mb-4 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+              Let's Connect
+            </h2>
+            <p className="text-xl text-slate-300 max-w-3xl mx-auto">
               Ready to collaborate on your next project or discuss training opportunities? 
-              I'd love to hear from you.
+              Let's build something amazing together.
             </p>
           </div>
           
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
             <a 
               href="mailto:alhibb01@gmail.com" 
-              className="flex flex-col items-center p-6 bg-white/10 rounded-lg hover:bg-white/20 transition-colors group"
+              className="group p-6 bg-slate-800/50 border border-slate-700 rounded-lg hover:border-blue-500/50 transition-all duration-300 hover:scale-105"
             >
-              <Mail className="h-8 w-8 mb-4 group-hover:scale-110 transition-transform" />
-              <h3 className="font-semibold mb-2">Email</h3>
-              <p className="text-sm opacity-90 text-center">alhibb01@gmail.com</p>
+              <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-500 rounded-lg flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                <Mail className="h-6 w-6 text-white" />
+              </div>
+              <h3 className="font-semibold text-white mb-2">Email</h3>
+              <p className="text-sm text-slate-400">alhibb01@gmail.com</p>
             </a>
             
             <a 
               href="https://www.linkedin.com/in/alhibb/" 
               target="_blank" 
               rel="noopener noreferrer"
-              className="flex flex-col items-center p-6 bg-white/10 rounded-lg hover:bg-white/20 transition-colors group"
+              className="group p-6 bg-slate-800/50 border border-slate-700 rounded-lg hover:border-blue-500/50 transition-all duration-300 hover:scale-105"
             >
-              <Linkedin className="h-8 w-8 mb-4 group-hover:scale-110 transition-transform" />
-              <h3 className="font-semibold mb-2">LinkedIn</h3>
-              <p className="text-sm opacity-90 text-center">Connect with me</p>
+              <div className="w-12 h-12 bg-gradient-to-br from-blue-600 to-blue-700 rounded-lg flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                <Linkedin className="h-6 w-6 text-white" />
+              </div>
+              <h3 className="font-semibold text-white mb-2">LinkedIn</h3>
+              <p className="text-sm text-slate-400">Professional Network</p>
             </a>
             
             <a 
               href="https://x.com/I_Bakondare/" 
               target="_blank" 
               rel="noopener noreferrer"
-              className="flex flex-col items-center p-6 bg-white/10 rounded-lg hover:bg-white/20 transition-colors group"
+              className="group p-6 bg-slate-800/50 border border-slate-700 rounded-lg hover:border-blue-500/50 transition-all duration-300 hover:scale-105"
             >
-              <Twitter className="h-8 w-8 mb-4 group-hover:scale-110 transition-transform" />
-              <h3 className="font-semibold mb-2">Twitter</h3>
-              <p className="text-sm opacity-90 text-center">Follow me</p>
+              <div className="w-12 h-12 bg-gradient-to-br from-sky-500 to-blue-500 rounded-lg flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                <Twitter className="h-6 w-6 text-white" />
+              </div>
+              <h3 className="font-semibold text-white mb-2">Twitter</h3>
+              <p className="text-sm text-slate-400">Latest Updates</p>
             </a>
             
             <a 
               href="https://github.com/Alhibb" 
               target="_blank" 
               rel="noopener noreferrer"
-              className="flex flex-col items-center p-6 bg-white/10 rounded-lg hover:bg-white/20 transition-colors group"
+              className="group p-6 bg-slate-800/50 border border-slate-700 rounded-lg hover:border-blue-500/50 transition-all duration-300 hover:scale-105"
             >
-              <Github className="h-8 w-8 mb-4 group-hover:scale-110 transition-transform" />
-              <h3 className="font-semibold mb-2">GitHub</h3>
-              <p className="text-sm opacity-90 text-center">View my code</p>
+              <div className="w-12 h-12 bg-gradient-to-br from-gray-700 to-gray-800 rounded-lg flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                <Github className="h-6 w-6 text-white" />
+              </div>
+              <h3 className="font-semibold text-white mb-2">GitHub</h3>
+              <p className="text-sm text-slate-400">Open Source</p>
             </a>
           </div>
           
-          <div className="text-center mt-12">
+          <div className="text-center bg-slate-800/30 rounded-lg p-8 border border-slate-700">
             <div className="flex items-center justify-center mb-4">
-              <Phone className="h-5 w-5 mr-2" />
-              <span className="text-lg">+2348131621394</span>
+              <Phone className="h-6 w-6 mr-3 text-green-400" />
+              <span className="text-2xl font-semibold text-white">+2348131621394</span>
             </div>
-            <p className="opacity-90">Available for WhatsApp and calls</p>
+            <p className="text-slate-400">Available for WhatsApp and direct calls</p>
           </div>
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="bg-gray-900 text-white py-8">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <p className="text-gray-400">
-            © 2024 Ibrahim Rabiu. All rights reserved. Built with passion and precision.
-          </p>
+      <footer className="bg-slate-900 border-t border-slate-800 py-12">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center">
+            <div className="text-2xl font-bold bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent mb-4">
+              Ibrahim Rabiu
+            </div>
+            <p className="text-slate-400 mb-6">
+              Building intelligent solutions for tomorrow's challenges
+            </p>
+            <div className="flex justify-center space-x-6 mb-6">
+              <a href="https://github.com/Alhibb" target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-white transition-colors">
+                <Github className="h-5 w-5" />
+              </a>
+              <a href="https://www.linkedin.com/in/alhibb/" target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-white transition-colors">
+                <Linkedin className="h-5 w-5" />
+              </a>
+              <a href="https://x.com/I_Bakondare/" target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-white transition-colors">
+                <Twitter className="h-5 w-5" />
+              </a>
+              <a href="mailto:alhibb01@gmail.com" className="text-slate-400 hover:text-white transition-colors">
+                <Mail className="h-5 w-5" />
+              </a>
+            </div>
+            <p className="text-slate-500 text-sm">
+              © 2024 Ibrahim Rabiu. All rights reserved. Crafted with precision and passion.
+            </p>
+          </div>
         </div>
       </footer>
     </div>

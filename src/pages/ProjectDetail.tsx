@@ -1,6 +1,6 @@
 
 import { useParams, Link } from 'react-router-dom';
-import { ArrowLeft, Github, ExternalLink, Calendar, User, Code, Target } from 'lucide-react';
+import { ArrowLeft, Github, ExternalLink, Calendar, User, Code, Target, Mail, Zap, CheckCircle, AlertCircle, TrendingUp } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -15,10 +15,11 @@ const ProjectDetail = () => {
       description: "An intelligent tutoring platform that uses advanced machine learning algorithms to personalize learning experiences for students across different subjects and skill levels.",
       fullDescription: "This comprehensive AI-driven tutoring system revolutionizes the way students learn by providing personalized educational experiences. The platform uses machine learning algorithms to analyze student performance, identify knowledge gaps, and adapt teaching methods accordingly. Features include real-time progress tracking, intelligent content recommendation, automated assessment generation, and interactive learning modules. The system supports multiple subjects including mathematics, science, and programming, making it a versatile tool for educational institutions and individual learners.",
       tech: ["Python", "Flask", "TensorFlow", "React", "PostgreSQL", "Docker"],
-      image: "https://images.unsplash.com/photo-1649972904349-6e44c42644a7?w=800&h=400&fit=crop&crop=faces",
+      image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&h=400&fit=crop",
       category: "Artificial Intelligence",
       duration: "6 months",
       role: "Lead Developer & AI Engineer",
+      gradient: "from-blue-600 to-cyan-500",
       features: [
         "Personalized learning paths based on individual student performance",
         "Real-time progress tracking and analytics dashboard",
@@ -336,12 +337,12 @@ const ProjectDetail = () => {
 
   if (!project) {
     return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+      <div className="min-h-screen bg-slate-900 text-white flex items-center justify-center">
         <div className="text-center">
-          <h1 className="text-4xl font-bold text-gray-900 mb-4">Project Not Found</h1>
-          <p className="text-gray-600 mb-8">The project you're looking for doesn't exist.</p>
+          <h1 className="text-4xl font-bold mb-4">Project Not Found</h1>
+          <p className="text-slate-400 mb-8">The project you're looking for doesn't exist.</p>
           <Link to="/">
-            <Button>
+            <Button className="bg-blue-600 hover:bg-blue-700">
               <ArrowLeft className="mr-2 h-4 w-4" />
               Back to Home
             </Button>
@@ -352,25 +353,25 @@ const ProjectDetail = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-slate-900 text-white">
       {/* Header */}
-      <div className="bg-white shadow-sm">
+      <div className="bg-slate-800/50 border-b border-slate-700">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-          <Link to="/" className="inline-flex items-center text-blue-600 hover:text-blue-700 mb-4">
+          <Link to="/" className="inline-flex items-center text-blue-400 hover:text-blue-300 mb-6 transition-colors">
             <ArrowLeft className="mr-2 h-4 w-4" />
             Back to Portfolio
           </Link>
           <div className="flex items-center justify-between">
             <div>
-              <h1 className="text-4xl font-bold text-gray-900">{project.title}</h1>
-              <p className="text-xl text-gray-600 mt-2">{project.description}</p>
+              <h1 className="text-4xl font-bold text-white mb-2">{project.title}</h1>
+              <p className="text-xl text-slate-300">{project.description}</p>
             </div>
             <div className="flex space-x-4">
-              <Button variant="outline" size="sm">
+              <Button variant="outline" size="sm" className="border-slate-600 text-slate-300 hover:bg-slate-700">
                 <Github className="mr-2 h-4 w-4" />
                 View Code
               </Button>
-              <Button size="sm">
+              <Button size="sm" className="bg-blue-600 hover:bg-blue-700">
                 <ExternalLink className="mr-2 h-4 w-4" />
                 Live Demo
               </Button>
@@ -380,101 +381,137 @@ const ProjectDetail = () => {
       </div>
 
       {/* Hero Image */}
-      <div className="h-96 bg-gradient-to-r from-blue-600 to-purple-600 overflow-hidden">
+      <div className="relative h-96 overflow-hidden">
+        <div className={`absolute inset-0 bg-gradient-to-r ${project.gradient} opacity-90`}></div>
         <img 
           src={project.image} 
           alt={project.title}
-          className="w-full h-full object-cover opacity-80"
+          className="w-full h-full object-cover"
         />
+        <div className="absolute inset-0 bg-black/30"></div>
       </div>
 
       {/* Content */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid lg:grid-cols-3 gap-12">
           {/* Main Content */}
-          <div className="lg:col-span-2">
-            <div className="bg-white rounded-lg shadow-sm p-8 mb-8">
-              <h2 className="text-2xl font-bold text-gray-900 mb-6">Project Overview</h2>
-              <p className="text-gray-600 text-lg leading-relaxed mb-8">
-                {project.fullDescription}
-              </p>
-              
-              <h3 className="text-xl font-semibold text-gray-900 mb-4">Key Features</h3>
-              <ul className="space-y-3 mb-8">
-                {project.features.map((feature, index) => (
-                  <li key={index} className="flex items-start">
-                    <div className="w-2 h-2 bg-blue-600 rounded-full mt-2 mr-3 flex-shrink-0"></div>
-                    <span className="text-gray-600">{feature}</span>
-                  </li>
-                ))}
-              </ul>
+          <div className="lg:col-span-2 space-y-8">
+            <Card className="bg-slate-800/50 border-slate-700">
+              <CardHeader>
+                <CardTitle className="text-2xl text-white flex items-center">
+                  <Target className="mr-2 h-6 w-6 text-blue-400" />
+                  Project Overview
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-slate-300 text-lg leading-relaxed">
+                  {project.fullDescription}
+                </p>
+              </CardContent>
+            </Card>
 
-              <h3 className="text-xl font-semibold text-gray-900 mb-4">Technical Challenges</h3>
-              <ul className="space-y-3 mb-8">
-                {project.challenges.map((challenge, index) => (
-                  <li key={index} className="flex items-start">
-                    <div className="w-2 h-2 bg-red-500 rounded-full mt-2 mr-3 flex-shrink-0"></div>
-                    <span className="text-gray-600">{challenge}</span>
-                  </li>
-                ))}
-              </ul>
+            <Card className="bg-slate-800/50 border-slate-700">
+              <CardHeader>
+                <CardTitle className="text-xl text-white flex items-center">
+                  <Zap className="mr-2 h-5 w-5 text-green-400" />
+                  Key Features
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="grid md:grid-cols-2 gap-4">
+                  {project.features.map((feature, index) => (
+                    <div key={index} className="flex items-start space-x-3">
+                      <CheckCircle className="h-5 w-5 text-green-400 mt-0.5 flex-shrink-0" />
+                      <span className="text-slate-300">{feature}</span>
+                    </div>
+                  ))}
+                </div>
+              </CardContent>
+            </Card>
 
-              <h3 className="text-xl font-semibold text-gray-900 mb-4">Results & Impact</h3>
-              <ul className="space-y-3">
-                {project.outcomes.map((outcome, index) => (
-                  <li key={index} className="flex items-start">
-                    <div className="w-2 h-2 bg-green-500 rounded-full mt-2 mr-3 flex-shrink-0"></div>
-                    <span className="text-gray-600">{outcome}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
+            <Card className="bg-slate-800/50 border-slate-700">
+              <CardHeader>
+                <CardTitle className="text-xl text-white flex items-center">
+                  <AlertCircle className="mr-2 h-5 w-5 text-amber-400" />
+                  Technical Challenges
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="space-y-4">
+                  {project.challenges.map((challenge, index) => (
+                    <div key={index} className="flex items-start space-x-3">
+                      <div className="w-2 h-2 bg-amber-400 rounded-full mt-2 flex-shrink-0"></div>
+                      <span className="text-slate-300">{challenge}</span>
+                    </div>
+                  ))}
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="bg-slate-800/50 border-slate-700">
+              <CardHeader>
+                <CardTitle className="text-xl text-white flex items-center">
+                  <TrendingUp className="mr-2 h-5 w-5 text-green-400" />
+                  Results & Impact
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="space-y-4">
+                  {project.outcomes.map((outcome, index) => (
+                    <div key={index} className="flex items-start space-x-3">
+                      <div className="w-2 h-2 bg-green-400 rounded-full mt-2 flex-shrink-0"></div>
+                      <span className="text-slate-300">{outcome}</span>
+                    </div>
+                  ))}
+                </div>
+              </CardContent>
+            </Card>
           </div>
 
           {/* Sidebar */}
           <div className="space-y-6">
-            <Card>
+            <Card className="bg-slate-800/50 border-slate-700">
               <CardHeader>
-                <CardTitle className="flex items-center">
-                  <Target className="mr-2 h-5 w-5" />
+                <CardTitle className="flex items-center text-white">
+                  <Target className="mr-2 h-5 w-5 text-blue-400" />
                   Project Details
                 </CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
-                <div className="flex items-center">
-                  <Calendar className="mr-2 h-4 w-4 text-gray-500" />
+                <div className="flex items-center space-x-3">
+                  <Calendar className="h-4 w-4 text-slate-400" />
                   <div>
-                    <p className="text-sm text-gray-500">Duration</p>
-                    <p className="font-medium">{project.duration}</p>
+                    <p className="text-sm text-slate-400">Duration</p>
+                    <p className="font-medium text-white">{project.duration}</p>
                   </div>
                 </div>
-                <Separator />
-                <div className="flex items-center">
-                  <User className="mr-2 h-4 w-4 text-gray-500" />
+                <Separator className="bg-slate-700" />
+                <div className="flex items-center space-x-3">
+                  <User className="h-4 w-4 text-slate-400" />
                   <div>
-                    <p className="text-sm text-gray-500">My Role</p>
-                    <p className="font-medium">{project.role}</p>
+                    <p className="text-sm text-slate-400">My Role</p>
+                    <p className="font-medium text-white">{project.role}</p>
                   </div>
                 </div>
-                <Separator />
-                <div className="flex items-center">
-                  <Code className="mr-2 h-4 w-4 text-gray-500" />
+                <Separator className="bg-slate-700" />
+                <div className="flex items-center space-x-3">
+                  <Code className="h-4 w-4 text-slate-400" />
                   <div>
-                    <p className="text-sm text-gray-500">Category</p>
-                    <p className="font-medium">{project.category}</p>
+                    <p className="text-sm text-slate-400">Category</p>
+                    <p className="font-medium text-white">{project.category}</p>
                   </div>
                 </div>
               </CardContent>
             </Card>
 
-            <Card>
+            <Card className="bg-slate-800/50 border-slate-700">
               <CardHeader>
-                <CardTitle>Technologies Used</CardTitle>
+                <CardTitle className="text-white">Technologies Used</CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="flex flex-wrap gap-2">
                   {project.tech.map((tech) => (
-                    <Badge key={tech} variant="secondary" className="bg-blue-100 text-blue-800">
+                    <Badge key={tech} className="bg-blue-500/20 text-blue-300 border-blue-500/30">
                       {tech}
                     </Badge>
                   ))}
@@ -482,15 +519,15 @@ const ProjectDetail = () => {
               </CardContent>
             </Card>
 
-            <Card>
+            <Card className="bg-gradient-to-br from-blue-600/20 to-purple-600/20 border-blue-500/30">
               <CardHeader>
-                <CardTitle>Interested in Similar Work?</CardTitle>
+                <CardTitle className="text-white">Interested in Similar Work?</CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-gray-600 mb-4">
+                <p className="text-slate-300 mb-4">
                   I'm available for consulting and development work on similar projects.
                 </p>
-                <Button className="w-full">
+                <Button className="w-full bg-blue-600 hover:bg-blue-700">
                   <Mail className="mr-2 h-4 w-4" />
                   Get in Touch
                 </Button>
