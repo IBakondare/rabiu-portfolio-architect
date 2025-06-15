@@ -24,7 +24,7 @@ export const ResumeDownload: React.FC = () => {
         
         <h3 className="text-2xl font-bold text-white mb-4">Professional Resume</h3>
         <p className="text-slate-300 mb-6 leading-relaxed">
-          Download my comprehensive resume showcasing 5+ years of experience in AI, blockchain, and full-stack development.
+          Download my comprehensive resume showcasing expertise in AI, blockchain, and full-stack development.
         </p>
         
         <div className="flex justify-center items-center gap-1 mb-6">
