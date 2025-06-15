@@ -1,6 +1,5 @@
-
 import { useState, useEffect } from 'react';
-import { ArrowRight, Github, Linkedin, Twitter, Mail, Phone, Code, Brain, Database, Server, Smartphone, Globe, ChevronDown, ExternalLink, Zap, Users, Award, BookOpen } from 'lucide-react';
+import { ArrowRight, Github, Linkedin, Twitter, Mail, Phone, Code, Brain, Database, Server, Globe, ChevronDown, ExternalLink, Zap, Users, Award, BookOpen, Sparkles, TrendingUp, Shield, Rocket } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -181,23 +180,29 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen bg-slate-900 text-white">
+    <div className="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 text-white overflow-x-hidden">
       {/* Navigation */}
-      <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ${
-        isScrolled ? 'bg-slate-900/95 backdrop-blur-md border-b border-slate-700' : 'bg-transparent'
+      <nav className={`fixed top-0 w-full z-50 transition-all duration-500 ${
+        isScrolled 
+          ? 'bg-slate-950/90 backdrop-blur-xl border-b border-slate-800/50 shadow-2xl' 
+          : 'bg-transparent'
       }`}>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center py-4">
-            <div className="text-2xl font-bold bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
+        <div className="max-w-8xl mx-auto px-6 lg:px-12">
+          <div className="flex justify-between items-center py-6">
+            <div className="text-3xl font-black bg-gradient-to-r from-blue-400 via-purple-400 to-cyan-400 bg-clip-text text-transparent tracking-tight">
               Ibrahim Rabiu
             </div>
-            <div className="hidden md:flex space-x-8">
+            <div className="hidden md:flex space-x-12">
               {['Home', 'About', 'Projects', 'Services', 'Contact'].map((item) => (
                 <button
                   key={item}
                   onClick={() => scrollToSection(item.toLowerCase())}
-                  className={`text-sm font-medium transition-colors hover:text-blue-400 ${
-                    activeSection === item.toLowerCase() ? 'text-blue-400' : 'text-slate-300'
+                  className={`relative text-sm font-semibold transition-all duration-300 hover:text-blue-400 ${
+                    activeSection === item.toLowerCase() 
+                      ? 'text-blue-400' 
+                      : 'text-slate-300 hover:text-white'
+                  } after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-gradient-to-r after:from-blue-400 after:to-purple-400 after:transform after:scale-x-0 after:transition-transform after:duration-300 hover:after:scale-x-100 ${
+                    activeSection === item.toLowerCase() ? 'after:scale-x-100' : ''
                   }`}
                 >
                   {item}
@@ -210,135 +215,151 @@ const Index = () => {
 
       {/* Hero Section */}
       <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-blue-900/20 to-slate-900"></div>
-        <div className="absolute inset-0 opacity-30">
-          <div className="w-full h-full bg-gradient-to-br from-transparent via-blue-500/5 to-transparent"></div>
+        {/* Enhanced Background */}
+        <div className="absolute inset-0 bg-gradient-to-br from-slate-950 via-blue-950/30 to-slate-950"></div>
+        <div className="absolute inset-0">
+          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl animate-pulse"></div>
+          <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
+          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full h-full">
+            <div className="w-full h-full bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-blue-900/20 via-transparent to-transparent"></div>
+          </div>
         </div>
         
-        <div className="relative z-10 text-center px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto">
-          <div className="mb-8">
-            <div className="w-40 h-40 bg-gradient-to-br from-blue-500 via-purple-500 to-cyan-500 rounded-full mx-auto mb-8 flex items-center justify-center text-white text-5xl font-bold shadow-2xl animate-pulse">
-              IR
+        <div className="relative z-10 text-center px-6 sm:px-8 lg:px-12 max-w-8xl mx-auto">
+          {/* Profile Avatar */}
+          <div className="mb-16">
+            <div className="w-48 h-48 bg-gradient-to-br from-blue-500 via-purple-500 to-cyan-500 rounded-full mx-auto mb-8 flex items-center justify-center text-white text-6xl font-black shadow-2xl relative">
+              <div className="absolute inset-0 bg-gradient-to-br from-blue-500 via-purple-500 to-cyan-500 rounded-full blur-xl opacity-50 animate-pulse"></div>
+              <span className="relative z-10">IR</span>
             </div>
           </div>
           
-          <h1 className="text-6xl md:text-8xl font-bold mb-6 bg-gradient-to-r from-blue-400 via-purple-400 to-cyan-400 bg-clip-text text-transparent">
-            Ibrahim Rabiu
-          </h1>
-          
-          <div className="flex flex-wrap justify-center gap-4 mb-8">
-            <Badge className="bg-blue-500/20 text-blue-300 border-blue-500/30 px-4 py-2 text-lg">
-              AI Expert
-            </Badge>
-            <Badge className="bg-purple-500/20 text-purple-300 border-purple-500/30 px-4 py-2 text-lg">
-              Software Developer
-            </Badge>
-            <Badge className="bg-cyan-500/20 text-cyan-300 border-cyan-500/30 px-4 py-2 text-lg">
-              Technical Trainer
-            </Badge>
+          {/* Main Heading */}
+          <div className="space-y-8 mb-16">
+            <h1 className="text-7xl md:text-9xl font-black leading-none bg-gradient-to-r from-blue-400 via-purple-400 to-cyan-400 bg-clip-text text-transparent tracking-tighter">
+              Ibrahim Rabiu
+            </h1>
+            
+            <div className="flex flex-wrap justify-center gap-6">
+              <Badge className="bg-blue-500/20 text-blue-300 border-blue-500/30 px-6 py-3 text-xl font-semibold backdrop-blur-sm">
+                <Sparkles className="mr-2 h-5 w-5" />
+                AI Expert
+              </Badge>
+              <Badge className="bg-purple-500/20 text-purple-300 border-purple-500/30 px-6 py-3 text-xl font-semibold backdrop-blur-sm">
+                <Rocket className="mr-2 h-5 w-5" />
+                Software Developer
+              </Badge>
+              <Badge className="bg-cyan-500/20 text-cyan-300 border-cyan-500/30 px-6 py-3 text-xl font-semibold backdrop-blur-sm">
+                <TrendingUp className="mr-2 h-5 w-5" />
+                Technical Trainer
+              </Badge>
+            </div>
           </div>
           
-          <p className="text-xl md:text-2xl text-slate-300 mb-8 max-w-4xl mx-auto leading-relaxed">
-            Transforming ideas into intelligent solutions through cutting-edge AI, blockchain technology, 
-            and scalable web applications. Building the future, one algorithm at a time.
+          <p className="text-2xl md:text-3xl text-slate-300 mb-16 max-w-6xl mx-auto leading-relaxed font-light">
+            Transforming ideas into <span className="font-semibold bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">intelligent solutions</span> through cutting-edge AI, blockchain technology, and scalable web applications. <span className="font-semibold text-white">Building the future, one algorithm at a time.</span>
           </p>
           
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-12 max-w-3xl mx-auto">
+          {/* Stats Grid */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-20 max-w-5xl mx-auto">
             {stats.map((stat, index) => (
-              <div key={index} className="text-center">
-                <stat.icon className="h-8 w-8 mx-auto mb-2 text-blue-400" />
-                <div className="text-3xl font-bold text-white">{stat.number}</div>
-                <div className="text-sm text-slate-400">{stat.label}</div>
+              <div key={index} className="text-center group">
+                <div className="bg-slate-800/50 backdrop-blur-sm border border-slate-700/50 rounded-2xl p-8 hover:bg-slate-800/70 transition-all duration-300 hover:scale-105 hover:shadow-2xl">
+                  <stat.icon className="h-10 w-10 mx-auto mb-4 text-blue-400 group-hover:text-cyan-400 transition-colors" />
+                  <div className="text-4xl font-black text-white mb-2">{stat.number}</div>
+                  <div className="text-sm text-slate-400 font-medium">{stat.label}</div>
+                </div>
               </div>
             ))}
           </div>
           
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          {/* CTA Buttons */}
+          <div className="flex flex-col sm:flex-row gap-6 justify-center mb-20">
             <Button 
               size="lg" 
               onClick={() => scrollToSection('projects')}
-              className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-8 py-3 text-lg"
+              className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-12 py-4 text-xl font-semibold rounded-2xl shadow-2xl hover:shadow-blue-500/25 transition-all duration-300 hover:scale-105"
             >
               Explore My Work
-              <ArrowRight className="ml-2 h-5 w-5" />
+              <ArrowRight className="ml-3 h-6 w-6" />
             </Button>
             <Button 
               variant="outline" 
               size="lg"
               onClick={() => scrollToSection('contact')}
-              className="border-blue-500 text-blue-400 hover:bg-blue-500/10 px-8 py-3 text-lg"
+              className="border-2 border-blue-500/50 text-blue-400 hover:bg-blue-500/10 hover:border-blue-400 px-12 py-4 text-xl font-semibold rounded-2xl backdrop-blur-sm transition-all duration-300 hover:scale-105"
             >
               Get In Touch
             </Button>
           </div>
           
-          <div className="mt-12 animate-bounce">
-            <ChevronDown className="h-8 w-8 mx-auto text-slate-400" />
+          <div className="animate-bounce">
+            <ChevronDown className="h-10 w-10 mx-auto text-slate-400" />
           </div>
         </div>
       </section>
 
       {/* About Section */}
-      <section id="about" className="py-20 bg-slate-800/50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-5xl font-bold mb-4 bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
+      <section id="about" className="py-32 bg-slate-900/50 backdrop-blur-sm">
+        <div className="max-w-8xl mx-auto px-6 lg:px-12">
+          <div className="text-center mb-24">
+            <h2 className="text-6xl md:text-7xl font-black mb-8 bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
               About Me
             </h2>
-            <p className="text-xl text-slate-300 max-w-3xl mx-auto">
-              Crafting intelligent solutions that bridge the gap between complex technology and real-world impact
+            <p className="text-2xl text-slate-300 max-w-4xl mx-auto font-light">
+              Crafting <span className="font-semibold text-white">intelligent solutions</span> that bridge the gap between complex technology and real-world impact
             </p>
           </div>
           
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
-            <div className="space-y-6">
-              <h3 className="text-3xl font-semibold text-white mb-6">My Journey</h3>
-              <p className="text-slate-300 text-lg leading-relaxed">
-                As a passionate AI expert and software developer, I specialize in creating intelligent systems 
-                that solve complex real-world problems. My journey began at Ahmadu Bello University, where I 
-                developed a strong foundation in computer science and discovered my passion for artificial intelligence.
-              </p>
-              <p className="text-slate-300 text-lg leading-relaxed">
-                Over the years, I have mastered the art of building scalable web applications, implementing machine 
-                learning solutions, and creating blockchain-based systems. My expertise spans from backend 
-                development with Python and Node.js to modern frontend frameworks like React and Next.js.
-              </p>
-              <p className="text-slate-300 text-lg leading-relaxed">
-                Beyond development, I am passionate about sharing knowledge through comprehensive training programs, 
-                helping individuals and organizations harness the power of AI and modern web technologies.
-              </p>
+          <div className="grid lg:grid-cols-2 gap-20 items-start">
+            <div className="space-y-10">
+              <h3 className="text-4xl font-bold text-white mb-8 flex items-center">
+                <Shield className="mr-4 h-8 w-8 text-blue-400" />
+                My Journey
+              </h3>
+              <div className="space-y-8 text-lg leading-relaxed">
+                <p className="text-slate-300">
+                  As a passionate <span className="font-semibold text-blue-400">AI expert</span> and <span className="font-semibold text-purple-400">software developer</span>, I specialize in creating intelligent systems that solve complex real-world problems. My journey began at <span className="font-semibold text-white">Ahmadu Bello University</span>, where I developed a strong foundation in computer science and discovered my passion for artificial intelligence.
+                </p>
+                <p className="text-slate-300">
+                  Over the years, I have mastered the art of building <span className="font-semibold text-green-400">scalable web applications</span>, implementing <span className="font-semibold text-cyan-400">machine learning solutions</span>, and creating <span className="font-semibold text-purple-400">blockchain-based systems</span>. My expertise spans from backend development with Python and Node.js to modern frontend frameworks like React and Next.js.
+                </p>
+                <p className="text-slate-300">
+                  Beyond development, I am passionate about <span className="font-semibold text-orange-400">sharing knowledge</span> through comprehensive training programs, helping individuals and organizations harness the power of AI and modern web technologies.
+                </p>
+              </div>
               
-              <div className="bg-slate-700/50 p-6 rounded-lg border border-slate-600">
-                <h4 className="text-xl font-semibold text-white mb-4 flex items-center">
-                  <Award className="mr-2 h-5 w-5 text-blue-400" />
+              <div className="bg-gradient-to-br from-slate-800/50 to-slate-700/50 p-8 rounded-3xl border border-slate-600/50 backdrop-blur-sm">
+                <h4 className="text-2xl font-bold text-white mb-6 flex items-center">
+                  <Award className="mr-3 h-6 w-6 text-blue-400" />
                   Education
                 </h4>
-                <p className="font-medium text-blue-400">Ahmadu Bello University</p>
-                <p className="text-slate-300">Bachelor's Degree in Computer Science</p>
+                <p className="text-xl font-semibold text-blue-400 mb-2">Ahmadu Bello University</p>
+                <p className="text-slate-300 text-lg">Bachelor's Degree in Computer Science</p>
               </div>
             </div>
             
-            <div className="space-y-8">
-              <h3 className="text-3xl font-semibold text-white mb-6">Technical Expertise</h3>
-              <div className="space-y-6">
+            <div className="space-y-12">
+              <h3 className="text-4xl font-bold text-white mb-8">Technical Expertise</h3>
+              <div className="space-y-10">
                 {['Frontend', 'Backend', 'AI/ML', 'Database', 'Cloud', 'Tools'].map((category) => (
-                  <div key={category}>
-                    <h4 className="text-lg font-semibold text-blue-400 mb-3">{category}</h4>
-                    <div className="space-y-3">
+                  <div key={category} className="bg-gradient-to-br from-slate-800/30 to-slate-700/30 p-8 rounded-3xl border border-slate-600/30 backdrop-blur-sm">
+                    <h4 className="text-2xl font-bold text-blue-400 mb-6">{category}</h4>
+                    <div className="space-y-4">
                       {skills.filter(skill => skill.category === category).map((skill) => (
                         <div key={skill.name} className="flex items-center justify-between">
                           <div className="flex items-center">
-                            <skill.icon className="h-4 w-4 mr-2 text-slate-400" />
-                            <span className="text-slate-300">{skill.name}</span>
+                            <skill.icon className="h-5 w-5 mr-3 text-slate-400" />
+                            <span className="text-slate-300 font-medium">{skill.name}</span>
                           </div>
-                          <div className="flex items-center space-x-2">
-                            <div className="w-24 bg-slate-700 rounded-full h-2">
+                          <div className="flex items-center space-x-3">
+                            <div className="w-32 bg-slate-700/50 rounded-full h-3 overflow-hidden">
                               <div 
-                                className="bg-gradient-to-r from-blue-500 to-cyan-500 h-2 rounded-full transition-all duration-1000"
+                                className="bg-gradient-to-r from-blue-500 to-cyan-500 h-full rounded-full transition-all duration-1000 shadow-lg"
                                 style={{ width: `${skill.level}%` }}
                               ></div>
                             </div>
-                            <span className="text-sm text-slate-400 w-8">{skill.level}%</span>
+                            <span className="text-sm text-slate-400 w-10 font-semibold">{skill.level}%</span>
                           </div>
                         </div>
                       ))}
@@ -352,60 +373,60 @@ const Index = () => {
       </section>
 
       {/* Projects Section */}
-      <section id="projects" className="py-20 bg-slate-900">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-5xl font-bold mb-4 bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
+      <section id="projects" className="py-32 bg-gradient-to-br from-slate-950 to-slate-900">
+        <div className="max-w-8xl mx-auto px-6 lg:px-12">
+          <div className="text-center mb-24">
+            <h2 className="text-6xl md:text-7xl font-black mb-8 bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
               Featured Projects
             </h2>
-            <p className="text-xl text-slate-300 max-w-3xl mx-auto">
-              Innovative solutions combining AI, blockchain, and modern web technologies to solve real-world challenges
+            <p className="text-2xl text-slate-300 max-w-4xl mx-auto font-light">
+              Innovative solutions combining <span className="font-semibold text-purple-400">AI</span>, <span className="font-semibold text-blue-400">blockchain</span>, and <span className="font-semibold text-green-400">modern web technologies</span> to solve real-world challenges
             </p>
           </div>
           
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
             {projects.map((project) => (
               <Link key={project.id} to={`/project/${project.id}`}>
-                <Card className="bg-slate-800/50 border-slate-700 hover:border-blue-500/50 transition-all duration-300 hover:scale-105 cursor-pointer group h-full">
-                  <div className="relative overflow-hidden rounded-t-lg">
+                <Card className="bg-gradient-to-br from-slate-800/50 to-slate-700/30 border-slate-600/50 hover:border-blue-500/50 transition-all duration-500 hover:scale-105 cursor-pointer group h-full backdrop-blur-sm hover:shadow-2xl hover:shadow-blue-500/20">
+                  <div className="relative overflow-hidden rounded-t-xl">
                     <div className={`absolute inset-0 bg-gradient-to-br ${project.gradient} opacity-90`}></div>
                     <img 
                       src={project.image} 
                       alt={project.title}
-                      className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-300"
+                      className="w-full h-56 object-cover group-hover:scale-110 transition-transform duration-500"
                     />
-                    <div className="absolute top-4 left-4">
-                      <Badge className="bg-black/50 text-white border-none">
+                    <div className="absolute top-6 left-6">
+                      <Badge className="bg-black/60 text-white border-none backdrop-blur-sm px-3 py-1">
                         {project.category}
                       </Badge>
                     </div>
-                    <div className="absolute top-4 right-4">
-                      <Badge variant="outline" className="bg-white/20 text-white border-white/30">
+                    <div className="absolute top-6 right-6">
+                      <Badge variant="outline" className="bg-white/20 text-white border-white/30 backdrop-blur-sm px-3 py-1">
                         {project.complexity}
                       </Badge>
                     </div>
-                    <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors duration-300"></div>
+                    <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors duration-500"></div>
                   </div>
                   
-                  <CardHeader>
-                    <CardTitle className="text-xl text-white group-hover:text-blue-400 transition-colors flex items-center justify-between">
+                  <CardHeader className="pb-4">
+                    <CardTitle className="text-2xl text-white group-hover:text-blue-400 transition-colors flex items-center justify-between">
                       {project.title}
-                      <ExternalLink className="h-4 w-4 opacity-0 group-hover:opacity-100 transition-opacity" />
+                      <ExternalLink className="h-5 w-5 opacity-0 group-hover:opacity-100 transition-opacity" />
                     </CardTitle>
-                    <CardDescription className="text-slate-300 line-clamp-3">
+                    <CardDescription className="text-slate-300 line-clamp-3 text-base leading-relaxed">
                       {project.description}
                     </CardDescription>
                   </CardHeader>
                   
                   <CardContent>
-                    <div className="flex flex-wrap gap-2 mb-4">
+                    <div className="flex flex-wrap gap-2">
                       {project.tech.slice(0, 4).map((tech) => (
-                        <Badge key={tech} variant="secondary" className="bg-slate-700 text-slate-300 border-slate-600 text-xs">
+                        <Badge key={tech} variant="secondary" className="bg-slate-700/50 text-slate-300 border-slate-600/50 text-sm">
                           {tech}
                         </Badge>
                       ))}
                       {project.tech.length > 4 && (
-                        <Badge variant="secondary" className="bg-slate-700 text-slate-300 border-slate-600 text-xs">
+                        <Badge variant="secondary" className="bg-slate-700/50 text-slate-300 border-slate-600/50 text-sm">
                           +{project.tech.length - 4}
                         </Badge>
                       )}
@@ -419,34 +440,34 @@ const Index = () => {
       </section>
 
       {/* Services Section */}
-      <section id="services" className="py-20 bg-slate-800/30">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-5xl font-bold mb-4 bg-gradient-to-r from-green-400 to-teal-400 bg-clip-text text-transparent">
+      <section id="services" className="py-32 bg-slate-800/30 backdrop-blur-sm">
+        <div className="max-w-8xl mx-auto px-6 lg:px-12">
+          <div className="text-center mb-24">
+            <h2 className="text-6xl md:text-7xl font-black mb-8 bg-gradient-to-r from-green-400 to-teal-400 bg-clip-text text-transparent">
               Services
             </h2>
-            <p className="text-xl text-slate-300 max-w-3xl mx-auto">
-              Empowering individuals and organizations through expert training, consultancy, and technical guidance
+            <p className="text-2xl text-slate-300 max-w-4xl mx-auto font-light">
+              Empowering individuals and organizations through <span className="font-semibold text-green-400">expert training</span>, <span className="font-semibold text-teal-400">consultancy</span>, and <span className="font-semibold text-blue-400">technical guidance</span>
             </p>
           </div>
           
-          <div className="grid md:grid-cols-2 gap-8">
+          <div className="grid md:grid-cols-2 gap-12">
             {services.map((service, index) => (
-              <Card key={index} className="bg-slate-800/50 border-slate-700 hover:border-green-500/50 transition-all duration-300 hover:scale-105">
-                <CardHeader className="text-center">
-                  <div className="w-16 h-16 bg-gradient-to-br from-green-500 to-teal-500 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <service.icon className="h-8 w-8 text-white" />
+              <Card key={index} className="bg-gradient-to-br from-slate-800/50 to-slate-700/30 border-slate-600/50 hover:border-green-500/50 transition-all duration-500 hover:scale-105 backdrop-blur-sm hover:shadow-2xl hover:shadow-green-500/20">
+                <CardHeader className="text-center pb-6">
+                  <div className="w-20 h-20 bg-gradient-to-br from-green-500 to-teal-500 rounded-3xl flex items-center justify-center mx-auto mb-6 shadow-2xl">
+                    <service.icon className="h-10 w-10 text-white" />
                   </div>
-                  <CardTitle className="text-2xl text-white">{service.title}</CardTitle>
+                  <CardTitle className="text-3xl text-white font-bold">{service.title}</CardTitle>
                 </CardHeader>
-                <CardContent className="space-y-4">
-                  <p className="text-slate-300 text-center leading-relaxed">
+                <CardContent className="space-y-6">
+                  <p className="text-slate-300 text-center leading-relaxed text-lg">
                     {service.description}
                   </p>
-                  <div className="grid grid-cols-2 gap-2">
+                  <div className="grid grid-cols-2 gap-3">
                     {service.features.map((feature) => (
-                      <div key={feature} className="flex items-center text-sm text-slate-400">
-                        <div className="w-1 h-1 bg-green-400 rounded-full mr-2"></div>
+                      <div key={feature} className="flex items-center text-slate-400 text-sm">
+                        <div className="w-2 h-2 bg-green-400 rounded-full mr-3 flex-shrink-0"></div>
                         {feature}
                       </div>
                     ))}
@@ -459,105 +480,105 @@ const Index = () => {
       </section>
 
       {/* Contact Section */}
-      <section id="contact" className="py-20 bg-gradient-to-br from-slate-900 via-blue-900/20 to-slate-900">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-5xl font-bold mb-4 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+      <section id="contact" className="py-32 bg-gradient-to-br from-slate-950 via-blue-950/20 to-slate-950">
+        <div className="max-w-8xl mx-auto px-6 lg:px-12">
+          <div className="text-center mb-24">
+            <h2 className="text-6xl md:text-7xl font-black mb-8 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
               Let's Connect
             </h2>
-            <p className="text-xl text-slate-300 max-w-3xl mx-auto">
+            <p className="text-2xl text-slate-300 max-w-4xl mx-auto font-light">
               Ready to collaborate on your next project or discuss training opportunities? 
-              Let's build something amazing together.
+              <span className="font-semibold text-white block mt-4">Let's build something amazing together.</span>
             </p>
           </div>
           
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
             <a 
               href="mailto:alhibb01@gmail.com" 
-              className="group p-6 bg-slate-800/50 border border-slate-700 rounded-lg hover:border-blue-500/50 transition-all duration-300 hover:scale-105"
+              className="group p-8 bg-gradient-to-br from-slate-800/50 to-slate-700/30 border border-slate-600/50 rounded-3xl hover:border-blue-500/50 transition-all duration-500 hover:scale-105 backdrop-blur-sm hover:shadow-2xl hover:shadow-blue-500/20"
             >
-              <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-500 rounded-lg flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                <Mail className="h-6 w-6 text-white" />
+              <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-purple-500 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform shadow-2xl">
+                <Mail className="h-8 w-8 text-white" />
               </div>
-              <h3 className="font-semibold text-white mb-2">Email</h3>
-              <p className="text-sm text-slate-400">alhibb01@gmail.com</p>
+              <h3 className="text-xl font-bold text-white mb-3">Email</h3>
+              <p className="text-slate-400">alhibb01@gmail.com</p>
             </a>
             
             <a 
               href="https://www.linkedin.com/in/alhibb/" 
               target="_blank" 
               rel="noopener noreferrer"
-              className="group p-6 bg-slate-800/50 border border-slate-700 rounded-lg hover:border-blue-500/50 transition-all duration-300 hover:scale-105"
+              className="group p-8 bg-gradient-to-br from-slate-800/50 to-slate-700/30 border border-slate-600/50 rounded-3xl hover:border-blue-500/50 transition-all duration-500 hover:scale-105 backdrop-blur-sm hover:shadow-2xl hover:shadow-blue-500/20"
             >
-              <div className="w-12 h-12 bg-gradient-to-br from-blue-600 to-blue-700 rounded-lg flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                <Linkedin className="h-6 w-6 text-white" />
+              <div className="w-16 h-16 bg-gradient-to-br from-blue-600 to-blue-700 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform shadow-2xl">
+                <Linkedin className="h-8 w-8 text-white" />
               </div>
-              <h3 className="font-semibold text-white mb-2">LinkedIn</h3>
-              <p className="text-sm text-slate-400">Professional Network</p>
+              <h3 className="text-xl font-bold text-white mb-3">LinkedIn</h3>
+              <p className="text-slate-400">Professional Network</p>
             </a>
             
             <a 
               href="https://x.com/I_Bakondare/" 
               target="_blank" 
               rel="noopener noreferrer"
-              className="group p-6 bg-slate-800/50 border border-slate-700 rounded-lg hover:border-blue-500/50 transition-all duration-300 hover:scale-105"
+              className="group p-8 bg-gradient-to-br from-slate-800/50 to-slate-700/30 border border-slate-600/50 rounded-3xl hover:border-blue-500/50 transition-all duration-500 hover:scale-105 backdrop-blur-sm hover:shadow-2xl hover:shadow-blue-500/20"
             >
-              <div className="w-12 h-12 bg-gradient-to-br from-sky-500 to-blue-500 rounded-lg flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                <Twitter className="h-6 w-6 text-white" />
+              <div className="w-16 h-16 bg-gradient-to-br from-sky-500 to-blue-500 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform shadow-2xl">
+                <Twitter className="h-8 w-8 text-white" />
               </div>
-              <h3 className="font-semibold text-white mb-2">Twitter</h3>
-              <p className="text-sm text-slate-400">Latest Updates</p>
+              <h3 className="text-xl font-bold text-white mb-3">Twitter</h3>
+              <p className="text-slate-400">Latest Updates</p>
             </a>
             
             <a 
               href="https://github.com/Alhibb" 
               target="_blank" 
               rel="noopener noreferrer"
-              className="group p-6 bg-slate-800/50 border border-slate-700 rounded-lg hover:border-blue-500/50 transition-all duration-300 hover:scale-105"
+              className="group p-8 bg-gradient-to-br from-slate-800/50 to-slate-700/30 border border-slate-600/50 rounded-3xl hover:border-blue-500/50 transition-all duration-500 hover:scale-105 backdrop-blur-sm hover:shadow-2xl hover:shadow-blue-500/20"
             >
-              <div className="w-12 h-12 bg-gradient-to-br from-gray-700 to-gray-800 rounded-lg flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                <Github className="h-6 w-6 text-white" />
+              <div className="w-16 h-16 bg-gradient-to-br from-gray-700 to-gray-800 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform shadow-2xl">
+                <Github className="h-8 w-8 text-white" />
               </div>
-              <h3 className="font-semibold text-white mb-2">GitHub</h3>
-              <p className="text-sm text-slate-400">Open Source</p>
+              <h3 className="text-xl font-bold text-white mb-3">GitHub</h3>
+              <p className="text-slate-400">Open Source</p>
             </a>
           </div>
           
-          <div className="text-center bg-slate-800/30 rounded-lg p-8 border border-slate-700">
-            <div className="flex items-center justify-center mb-4">
-              <Phone className="h-6 w-6 mr-3 text-green-400" />
-              <span className="text-2xl font-semibold text-white">+2348131621394</span>
+          <div className="text-center bg-gradient-to-br from-slate-800/30 to-slate-700/30 rounded-3xl p-12 border border-slate-600/30 backdrop-blur-sm">
+            <div className="flex items-center justify-center mb-6">
+              <Phone className="h-8 w-8 mr-4 text-green-400" />
+              <span className="text-3xl font-bold text-white">+2348131621394</span>
             </div>
-            <p className="text-slate-400">Available for WhatsApp and direct calls</p>
+            <p className="text-slate-400 text-lg">Available for WhatsApp and direct calls</p>
           </div>
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="bg-slate-900 border-t border-slate-800 py-12">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <footer className="bg-slate-950 border-t border-slate-800/50 py-16">
+        <div className="max-w-8xl mx-auto px-6 lg:px-12">
           <div className="text-center">
-            <div className="text-2xl font-bold bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent mb-4">
+            <div className="text-3xl font-black bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent mb-6">
               Ibrahim Rabiu
             </div>
-            <p className="text-slate-400 mb-6">
+            <p className="text-slate-400 mb-8 text-lg">
               Building intelligent solutions for tomorrow's challenges
             </p>
-            <div className="flex justify-center space-x-6 mb-6">
-              <a href="https://github.com/Alhibb" target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-white transition-colors">
-                <Github className="h-5 w-5" />
+            <div className="flex justify-center space-x-8 mb-8">
+              <a href="https://github.com/Alhibb" target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-white transition-colors duration-300 hover:scale-110 transform">
+                <Github className="h-6 w-6" />
               </a>
-              <a href="https://www.linkedin.com/in/alhibb/" target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-white transition-colors">
-                <Linkedin className="h-5 w-5" />
+              <a href="https://www.linkedin.com/in/alhibb/" target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-white transition-colors duration-300 hover:scale-110 transform">
+                <Linkedin className="h-6 w-6" />
               </a>
-              <a href="https://x.com/I_Bakondare/" target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-white transition-colors">
-                <Twitter className="h-5 w-5" />
+              <a href="https://x.com/I_Bakondare/" target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-white transition-colors duration-300 hover:scale-110 transform">
+                <Twitter className="h-6 w-6" />
               </a>
-              <a href="mailto:alhibb01@gmail.com" className="text-slate-400 hover:text-white transition-colors">
-                <Mail className="h-5 w-5" />
+              <a href="mailto:alhibb01@gmail.com" className="text-slate-400 hover:text-white transition-colors duration-300 hover:scale-110 transform">
+                <Mail className="h-6 w-6" />
               </a>
             </div>
-            <p className="text-slate-500 text-sm">
+            <p className="text-slate-500">
               © 2024 Ibrahim Rabiu. All rights reserved. Crafted with precision and passion.
             </p>
           </div>
