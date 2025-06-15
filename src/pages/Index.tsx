@@ -13,7 +13,6 @@ import { BlogSection } from '@/components/BlogSection';
 import { ResumeDownload } from '@/components/ResumeDownload';
 import { CodePlayground } from '@/components/CodePlayground';
 import { ContactForm } from '@/components/ContactForm';
-import { NewsletterSignup } from '@/components/NewsletterSignup';
 import { AchievementTimeline } from '@/components/AchievementTimeline';
 import { FullArticleSection } from "@/components/FullArticleSection";
 
@@ -704,9 +703,6 @@ const Index = () => {
           </div>
         </div>
       </section>
-
-      <NewsletterSignup />
-      <ContactForm />
 
       {/* Contact Section */}
       <section id="contact" className="py-32 bg-gradient-to-br from-slate-950 via-blue-950/20 to-slate-950">
