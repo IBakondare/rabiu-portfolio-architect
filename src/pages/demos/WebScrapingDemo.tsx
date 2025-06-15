@@ -215,7 +215,7 @@ const WebScrapingApp = () => {
 
         <Tabs defaultValue="jobs" className="space-y-6">
           <TabsList>
-            <TabsTrigger value="jobs">Active Jobs</Tab>
+            <TabsTrigger value="jobs">Active Jobs</TabsTrigger>
             <TabsTrigger value="data">Scraped Data</TabsTrigger>
             <TabsTrigger value="create">Create Job</TabsTrigger>
           </TabsList>
