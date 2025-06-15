@@ -1,15 +1,29 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { ArrowRight, Github, Linkedin, Twitter, Mail, Phone, Code, Brain, Database, Server, Globe, ChevronDown, ExternalLink, Zap, Users, Award, BookOpen, Sparkles, TrendingUp, Shield, Rocket, Calendar, CheckSquare } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Link } from 'react-router-dom';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { ThemeToggle } from '@/components/ThemeToggle';
+import { SearchBar } from '@/components/SearchBar';
+import { ProjectFilters } from '@/components/ProjectFilters';
+import { TestimonialsSection } from '@/components/TestimonialsSection';
+import { BlogSection } from '@/components/BlogSection';
+import { ResumeDownload } from '@/components/ResumeDownload';
+import { CodePlayground } from '@/components/CodePlayground';
+import { ContactForm } from '@/components/ContactForm';
+import { NewsletterSignup } from '@/components/NewsletterSignup';
+import { AchievementTimeline } from '@/components/AchievementTimeline';
 
 const Index = () => {
   const [activeSection, setActiveSection] = useState('home');
   const [isScrolled, setIsScrolled] = useState(false);
   const [selectedMeetingType, setSelectedMeetingType] = useState('');
+  const [searchQuery, setSearchQuery] = useState('');
+  const [selectedCategory, setSelectedCategory] = useState('all');
+  const [selectedTechnology, setSelectedTechnology] = useState('all');
+  const [sortBy, setSortBy] = useState('date');
 
   useEffect(() => {
     const handleScroll = () => {
@@ -28,7 +42,8 @@ const Index = () => {
       category: "Artificial Intelligence",
       complexity: "Advanced",
       image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=600&h=400&fit=crop",
-      gradient: "from-blue-600 to-cyan-500"
+      gradient: "from-blue-600 to-cyan-500",
+      date: "2024-01-15"
     },
     {
       id: 2,
@@ -38,7 +53,8 @@ const Index = () => {
       category: "Productivity",
       complexity: "Advanced",
       image: "https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=600&h=400&fit=crop",
-      gradient: "from-green-600 to-blue-500"
+      gradient: "from-green-600 to-blue-500",
+      date: "2024-01-10"
     },
     {
       id: 3,
@@ -48,7 +64,8 @@ const Index = () => {
       category: "EdTech",
       complexity: "Advanced",
       image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=600&h=400&fit=crop",
-      gradient: "from-green-600 to-teal-500"
+      gradient: "from-green-600 to-teal-500",
+      date: "2024-01-08"
     },
     {
       id: 4,
@@ -58,7 +75,8 @@ const Index = () => {
       category: "Data Analytics",
       complexity: "Advanced",
       image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop",
-      gradient: "from-orange-600 to-red-500"
+      gradient: "from-orange-600 to-red-500",
+      date: "2024-01-05"
     },
     {
       id: 5,
@@ -68,7 +86,8 @@ const Index = () => {
       category: "Financial Technology",
       complexity: "Expert",
       image: "https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=600&h=400&fit=crop",
-      gradient: "from-indigo-600 to-blue-500"
+      gradient: "from-indigo-600 to-blue-500",
+      date: "2023-12-20"
     },
     {
       id: 6,
@@ -78,7 +97,8 @@ const Index = () => {
       category: "Internet of Things",
       complexity: "Advanced",
       image: "https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=600&h=400&fit=crop",
-      gradient: "from-teal-600 to-green-500"
+      gradient: "from-teal-600 to-green-500",
+      date: "2023-12-15"
     },
     {
       id: 7,
@@ -88,7 +108,8 @@ const Index = () => {
       category: "API Development",
       complexity: "Advanced",
       image: "https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=600&h=400&fit=crop",
-      gradient: "from-pink-600 to-rose-500"
+      gradient: "from-pink-600 to-rose-500",
+      date: "2023-12-10"
     },
     {
       id: 8,
@@ -98,7 +119,8 @@ const Index = () => {
       category: "Artificial Intelligence",
       complexity: "Expert",
       image: "https://images.unsplash.com/photo-1531746790731-6c087fecd65a?w=600&h=400&fit=crop",
-      gradient: "from-violet-600 to-purple-500"
+      gradient: "from-violet-600 to-purple-500",
+      date: "2023-12-05"
     },
     {
       id: 9,
@@ -108,7 +130,8 @@ const Index = () => {
       category: "Data Engineering",
       complexity: "Advanced",
       image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=400&fit=crop",
-      gradient: "from-amber-600 to-orange-500"
+      gradient: "from-amber-600 to-orange-500",
+      date: "2023-11-28"
     },
     {
       id: 10,
@@ -118,7 +141,8 @@ const Index = () => {
       category: "Cloud Technology",
       complexity: "Expert",
       image: "https://images.unsplash.com/photo-1544197150-b99a580bb7a8?w=600&h=400&fit=crop",
-      gradient: "from-sky-600 to-blue-500"
+      gradient: "from-sky-600 to-blue-500",
+      date: "2023-11-20"
     }
   ];
 
@@ -183,6 +207,59 @@ const Index = () => {
     { value: 'training-consultation', label: 'Training Program Consultation (45 min)' }
   ];
 
+  // Filter and search logic
+  const categories = useMemo(() => {
+    const uniqueCategories = [...new Set(projects.map(p => p.category))];
+    return uniqueCategories.sort();
+  }, []);
+
+  const technologies = useMemo(() => {
+    const allTech = projects.flatMap(p => p.tech);
+    const uniqueTech = [...new Set(allTech)];
+    return uniqueTech.sort();
+  }, []);
+
+  const filteredProjects = useMemo(() => {
+    let filtered = projects;
+
+    // Search filter
+    if (searchQuery) {
+      filtered = filtered.filter(project =>
+        project.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        project.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        project.tech.some(tech => tech.toLowerCase().includes(searchQuery.toLowerCase())) ||
+        project.category.toLowerCase().includes(searchQuery.toLowerCase())
+      );
+    }
+
+    // Category filter
+    if (selectedCategory !== 'all') {
+      filtered = filtered.filter(project => project.category === selectedCategory);
+    }
+
+    // Technology filter
+    if (selectedTechnology !== 'all') {
+      filtered = filtered.filter(project => project.tech.includes(selectedTechnology));
+    }
+
+    // Sort
+    filtered.sort((a, b) => {
+      switch (sortBy) {
+        case 'date':
+          return new Date(b.date).getTime() - new Date(a.date).getTime();
+        case 'complexity':
+          const complexityOrder = { 'Expert': 3, 'Advanced': 2, 'Intermediate': 1 };
+          return (complexityOrder[b.complexity] || 0) - (complexityOrder[a.complexity] || 0);
+        case 'name':
+          return a.title.localeCompare(b.title);
+        default:
+          return 0;
+      }
+    });
+
+    return filtered;
+  }, [projects, searchQuery, selectedCategory, selectedTechnology, sortBy]);
+
   const openCalendly = () => {
     if (selectedMeetingType) {
       window.open(`https://calendly.com/alhibb/${selectedMeetingType}`, '_blank');
@@ -195,6 +272,13 @@ const Index = () => {
     setActiveSection(sectionId);
     const element = document.getElementById(sectionId);
     element?.scrollIntoView({ behavior: 'smooth' });
+  };
+
+  const clearFilters = () => {
+    setSelectedCategory('all');
+    setSelectedTechnology('all');
+    setSortBy('date');
+    setSearchQuery('');
   };
 
   return (
@@ -210,8 +294,8 @@ const Index = () => {
             <div className="text-3xl font-black bg-gradient-to-r from-blue-400 via-purple-400 to-cyan-400 bg-clip-text text-transparent tracking-tight">
               AI Engineer
             </div>
-            <div className="hidden md:flex space-x-12">
-              {['Home', 'About', 'Projects', 'Services', 'Booking', 'Contact'].map((item) => (
+            <div className="hidden md:flex space-x-12 items-center">
+              {['Home', 'About', 'Projects', 'Services', 'Timeline', 'Blog', 'Contact'].map((item) => (
                 <button
                   key={item}
                   onClick={() => scrollToSection(item.toLowerCase())}
@@ -226,6 +310,7 @@ const Index = () => {
                   {item}
                 </button>
               ))}
+              <ThemeToggle />
             </div>
           </div>
         </div>
@@ -309,6 +394,13 @@ const Index = () => {
         </div>
       </section>
 
+      {/* Search & Newsletter Section */}
+      <section className="py-16 bg-slate-900/30">
+        <div className="max-w-4xl mx-auto px-6 lg:px-12">
+          <SearchBar onSearch={setSearchQuery} />
+        </div>
+      </section>
+
       {/* About Section */}
       <section id="about" className="py-32 bg-slate-900/50 backdrop-blur-sm">
         <div className="max-w-8xl mx-auto px-6 lg:px-12">
@@ -339,14 +431,7 @@ const Index = () => {
                 </p>
               </div>
               
-              <div className="bg-gradient-to-br from-slate-800/50 to-slate-700/50 p-8 rounded-3xl border border-slate-600/50 backdrop-blur-sm">
-                <h4 className="text-2xl font-bold text-white mb-6 flex items-center">
-                  <Award className="mr-3 h-6 w-6 text-blue-400" />
-                  Education
-                </h4>
-                <p className="text-xl font-semibold text-blue-400 mb-2">Ahmadu Bello University</p>
-                <p className="text-slate-300 text-lg">Bachelor's Degree in Computer Engineering</p>
-              </div>
+              <ResumeDownload />
             </div>
             
             <div className="space-y-12">
@@ -393,9 +478,21 @@ const Index = () => {
               Innovative solutions combining <span className="font-semibold text-purple-400">AI</span>, <span className="font-semibold text-blue-400">blockchain</span>, and <span className="font-semibold text-green-400">modern web technologies</span> to solve real-world challenges
             </p>
           </div>
+
+          <ProjectFilters
+            categories={categories}
+            technologies={technologies}
+            selectedCategory={selectedCategory}
+            selectedTechnology={selectedTechnology}
+            sortBy={sortBy}
+            onCategoryChange={setSelectedCategory}
+            onTechnologyChange={setSelectedTechnology}
+            onSortChange={setSortBy}
+            onClearFilters={clearFilters}
+          />
           
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
-            {projects.map((project) => (
+            {filteredProjects.map((project) => (
               <Link key={project.id} to={`/project/${project.id}`}>
                 <Card className="bg-gradient-to-br from-slate-800/50 to-slate-700/30 border-slate-600/50 hover:border-blue-500/50 transition-all duration-500 hover:scale-105 cursor-pointer group h-full backdrop-blur-sm hover:shadow-2xl hover:shadow-blue-500/20">
                   <div className="relative overflow-hidden rounded-t-xl">
@@ -488,6 +585,15 @@ const Index = () => {
           </div>
         </div>
       </section>
+
+      {/* Achievement Timeline */}
+      <AchievementTimeline />
+      {/* Testimonials Section */}
+      <TestimonialsSection />
+      {/* Blog Section */}
+      <BlogSection />
+      {/* Code Playground */}
+      <CodePlayground />
 
       {/* Book Meeting Section */}
       <section id="booking" className="py-32 bg-gradient-to-br from-slate-900 to-slate-800">
@@ -596,6 +702,9 @@ const Index = () => {
           </div>
         </div>
       </section>
+
+      <NewsletterSignup />
+      <ContactForm />
 
       {/* Contact Section */}
       <section id="contact" className="py-32 bg-gradient-to-br from-slate-950 via-blue-950/20 to-slate-950">

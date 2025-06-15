@@ -4,6 +4,8 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { ThemeProvider } from "@/contexts/ThemeContext";
+import { ErrorBoundary } from "@/components/ui/error-boundary";
 import Index from "./pages/Index";
 import ProjectDetail from "./pages/ProjectDetail";
 import NotFound from "./pages/NotFound";
@@ -23,32 +25,36 @@ import LiveChatWidget from "./components/LiveChatWidget";
 const queryClient = new QueryClient();
 
 const App = () => (
-  <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <Toaster />
-      <Sonner />
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Index />} />
-          <Route path="/project/:id" element={<ProjectDetail />} />
-          <Route path="/demo/ai-tutoring" element={<AITutoringDemo />} />
-          <Route path="/demo/blockchain" element={<BlockchainDemo />} />
-          <Route path="/demo/todo-app" element={<TodoDemo />} />
-          <Route path="/demo/elearning" element={<ELearningDemo />} />
-          <Route path="/demo/analytics" element={<AnalyticsDemo />} />
-          <Route path="/demo/fintech" element={<FinTechDemo />} />
-          <Route path="/demo/iot" element={<IoTDemo />} />
-          <Route path="/demo/social-media" element={<SocialMediaDemo />} />
-          <Route path="/demo/chatbot" element={<ChatbotDemo />} />
-          <Route path="/demo/web-scraping" element={<WebScrapingDemo />} />
-          <Route path="/demo/cloud-storage" element={<CloudStorageDemo />} />
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}  
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-        <LiveChatWidget />
-      </BrowserRouter>
-    </TooltipProvider>
-  </QueryClientProvider>
+  <ErrorBoundary>
+    <ThemeProvider>
+      <QueryClientProvider client={queryClient}>
+        <TooltipProvider>
+          <Toaster />
+          <Sonner />
+          <BrowserRouter>
+            <Routes>
+              <Route path="/" element={<Index />} />
+              <Route path="/project/:id" element={<ProjectDetail />} />
+              <Route path="/demo/ai-tutoring" element={<AITutoringDemo />} />
+              <Route path="/demo/blockchain" element={<BlockchainDemo />} />
+              <Route path="/demo/todo-app" element={<TodoDemo />} />
+              <Route path="/demo/elearning" element={<ELearningDemo />} />
+              <Route path="/demo/analytics" element={<AnalyticsDemo />} />
+              <Route path="/demo/fintech" element={<FinTechDemo />} />
+              <Route path="/demo/iot" element={<IoTDemo />} />
+              <Route path="/demo/social-media" element={<SocialMediaDemo />} />
+              <Route path="/demo/chatbot" element={<ChatbotDemo />} />
+              <Route path="/demo/web-scraping" element={<WebScrapingDemo />} />
+              <Route path="/demo/cloud-storage" element={<CloudStorageDemo />} />
+              {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}  
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+            <LiveChatWidget />
+          </BrowserRouter>
+        </TooltipProvider>
+      </QueryClientProvider>
+    </ThemeProvider>
+  </ErrorBoundary>
 );
 
 export default App;
