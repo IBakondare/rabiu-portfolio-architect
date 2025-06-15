@@ -190,7 +190,7 @@ const Index = () => {
         <div className="max-w-8xl mx-auto px-6 lg:px-12">
           <div className="flex justify-between items-center py-6">
             <div className="text-3xl font-black bg-gradient-to-r from-blue-400 via-purple-400 to-cyan-400 bg-clip-text text-transparent tracking-tight">
-              Ibrahim Rabiu
+              AI Engineer
             </div>
             <div className="hidden md:flex space-x-12">
               {['Home', 'About', 'Projects', 'Services', 'Contact'].map((item) => (
@@ -226,14 +226,6 @@ const Index = () => {
         </div>
         
         <div className="relative z-10 text-center px-6 sm:px-8 lg:px-12 max-w-8xl mx-auto">
-          {/* Profile Avatar */}
-          <div className="mb-16">
-            <div className="w-48 h-48 bg-gradient-to-br from-blue-500 via-purple-500 to-cyan-500 rounded-full mx-auto mb-8 flex items-center justify-center text-white text-6xl font-black shadow-2xl relative">
-              <div className="absolute inset-0 bg-gradient-to-br from-blue-500 via-purple-500 to-cyan-500 rounded-full blur-xl opacity-50 animate-pulse"></div>
-              <span className="relative z-10">IR</span>
-            </div>
-          </div>
-          
           {/* Main Heading */}
           <div className="space-y-8 mb-16">
             <h1 className="text-7xl md:text-9xl font-black leading-none bg-gradient-to-r from-blue-400 via-purple-400 to-cyan-400 bg-clip-text text-transparent tracking-tighter">
@@ -335,7 +327,7 @@ const Index = () => {
                   Education
                 </h4>
                 <p className="text-xl font-semibold text-blue-400 mb-2">Ahmadu Bello University</p>
-                <p className="text-slate-300 text-lg">Bachelor's Degree in Computer Science</p>
+                <p className="text-slate-300 text-lg">Bachelor's Degree in Computer Engineering</p>
               </div>
             </div>
             
@@ -559,7 +551,7 @@ const Index = () => {
         <div className="max-w-8xl mx-auto px-6 lg:px-12">
           <div className="text-center">
             <div className="text-3xl font-black bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent mb-6">
-              Ibrahim Rabiu
+              AI Engineer
             </div>
             <p className="text-slate-400 mb-8 text-lg">
               Building intelligent solutions for tomorrow's challenges
