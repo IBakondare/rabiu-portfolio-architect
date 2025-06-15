@@ -244,7 +244,7 @@ const ProjectDetail = () => {
       duration: "9 months",
       role: "IoT Solution Architect",
       gradient: "from-teal-600 to-green-500",
-      demoUrl: null,
+      demoUrl: "/demo/iot",
       features: [
         "Multi-protocol device connectivity (MQTT, HTTP, CoAP)",
         "Real-time sensor data collection and processing",
@@ -289,7 +289,7 @@ const ProjectDetail = () => {
       duration: "7 months",
       role: "Backend API Developer",
       gradient: "from-pink-600 to-rose-500",
-      demoUrl: null,
+      demoUrl: "/demo/social-media",
       features: [
         "RESTful API with comprehensive endpoint coverage",
         "Real-time messaging with Socket.io integration",
@@ -334,7 +334,7 @@ const ProjectDetail = () => {
       duration: "11 months",
       role: "AI/ML Engineer",
       gradient: "from-violet-600 to-purple-500",
-      demoUrl: null,
+      demoUrl: "/demo/chatbot",
       features: [
         "Natural language understanding with intent recognition",
         "Context-aware conversation management",
@@ -379,7 +379,7 @@ const ProjectDetail = () => {
       duration: "5 months",
       role: "Data Engineer",
       gradient: "from-amber-600 to-orange-500",
-      demoUrl: null,
+      demoUrl: "/demo/web-scraping",
       features: [
         "Intelligent parsing with machine learning classification",
         "JavaScript rendering for dynamic content extraction",
@@ -424,7 +424,7 @@ const ProjectDetail = () => {
       duration: "13 months",
       role: "Cloud Solutions Architect",
       gradient: "from-sky-600 to-blue-500",
-      demoUrl: null,
+      demoUrl: "/demo/cloud-storage",
       features: [
         "Secure file storage with end-to-end encryption",
         "Real-time file synchronization across devices",

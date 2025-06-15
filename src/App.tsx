@@ -1,4 +1,3 @@
-
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -12,6 +11,11 @@ import BlockchainDemo from "./pages/demos/BlockchainDemo";
 import ELearningDemo from "./pages/demos/ELearningDemo";
 import AnalyticsDemo from "./pages/demos/AnalyticsDemo";
 import FinTechDemo from "./pages/demos/FinTechDemo";
+import IoTDemo from "./pages/demos/IoTDemo";
+import SocialMediaDemo from "./pages/demos/SocialMediaDemo";
+import ChatbotDemo from "./pages/demos/ChatbotDemo";
+import WebScrapingDemo from "./pages/demos/WebScrapingDemo";
+import CloudStorageDemo from "./pages/demos/CloudStorageDemo";
 
 const queryClient = new QueryClient();
 
@@ -29,6 +33,11 @@ const App = () => (
           <Route path="/demo/elearning" element={<ELearningDemo />} />
           <Route path="/demo/analytics" element={<AnalyticsDemo />} />
           <Route path="/demo/fintech" element={<FinTechDemo />} />
+          <Route path="/demo/iot" element={<IoTDemo />} />
+          <Route path="/demo/social-media" element={<SocialMediaDemo />} />
+          <Route path="/demo/chatbot" element={<ChatbotDemo />} />
+          <Route path="/demo/web-scraping" element={<WebScrapingDemo />} />
+          <Route path="/demo/cloud-storage" element={<CloudStorageDemo />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}  
           <Route path="*" element={<NotFound />} />
         </Routes>
