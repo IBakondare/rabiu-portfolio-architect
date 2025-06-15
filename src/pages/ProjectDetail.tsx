@@ -1,4 +1,3 @@
-
 import { useParams, Link } from 'react-router-dom';
 import { ArrowLeft, ExternalLink, Github, Calendar, User, Zap, CheckCircle, AlertTriangle, Target, Code, Database, Cloud, Lock, Users, BarChart3, Smartphone, MessageSquare, Search, HardDrive } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -20,6 +19,7 @@ const ProjectDetail = () => {
       duration: "8 months",
       role: "Lead Developer & AI Specialist",
       gradient: "from-blue-600 to-cyan-500",
+      demoUrl: "/demo/ai-tutoring",
       features: [
         "Personalized learning paths using neural networks",
         "Real-time progress tracking and analytics",
@@ -64,6 +64,7 @@ const ProjectDetail = () => {
       duration: "12 months",
       role: "Blockchain Architect",
       gradient: "from-purple-600 to-pink-500",
+      demoUrl: "/demo/blockchain",
       features: [
         "Smart contract automation for verification processes",
         "Real-time tracking with IoT device integration",
@@ -108,6 +109,7 @@ const ProjectDetail = () => {
       duration: "10 months",
       role: "Full Stack Developer",
       gradient: "from-green-600 to-teal-500",
+      demoUrl: "/demo/elearning",
       features: [
         "Interactive course builder with drag-and-drop interface",
         "Real-time video conferencing and screen sharing",
@@ -152,6 +154,7 @@ const ProjectDetail = () => {
       duration: "6 months",
       role: "Data Engineer & Frontend Developer",
       gradient: "from-orange-600 to-red-500",
+      demoUrl: "/demo/analytics",
       features: [
         "Real-time data processing and visualization",
         "Interactive charts and graphs with D3.js",
@@ -193,9 +196,10 @@ const ProjectDetail = () => {
       tech: ["React", "Node.js", "MongoDB", "TypeScript", "JWT"],
       image: "https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=600&h=400&fit=crop",
       category: "Financial Technology",
-      duration: "14 months",
+      duration: "14 months", 
       role: "Senior Full Stack Developer",
       gradient: "from-indigo-600 to-blue-500",
+      demoUrl: "/demo/fintech",
       features: [
         "Multi-factor authentication with biometric support",
         "Real-time transaction processing and notifications",
@@ -240,6 +244,7 @@ const ProjectDetail = () => {
       duration: "9 months",
       role: "IoT Solution Architect",
       gradient: "from-teal-600 to-green-500",
+      demoUrl: null,
       features: [
         "Multi-protocol device connectivity (MQTT, HTTP, CoAP)",
         "Real-time sensor data collection and processing",
@@ -284,6 +289,7 @@ const ProjectDetail = () => {
       duration: "7 months",
       role: "Backend API Developer",
       gradient: "from-pink-600 to-rose-500",
+      demoUrl: null,
       features: [
         "RESTful API with comprehensive endpoint coverage",
         "Real-time messaging with Socket.io integration",
@@ -328,6 +334,7 @@ const ProjectDetail = () => {
       duration: "11 months",
       role: "AI/ML Engineer",
       gradient: "from-violet-600 to-purple-500",
+      demoUrl: null,
       features: [
         "Natural language understanding with intent recognition",
         "Context-aware conversation management",
@@ -372,6 +379,7 @@ const ProjectDetail = () => {
       duration: "5 months",
       role: "Data Engineer",
       gradient: "from-amber-600 to-orange-500",
+      demoUrl: null,
       features: [
         "Intelligent parsing with machine learning classification",
         "JavaScript rendering for dynamic content extraction",
@@ -416,6 +424,7 @@ const ProjectDetail = () => {
       duration: "13 months",
       role: "Cloud Solutions Architect",
       gradient: "from-sky-600 to-blue-500",
+      demoUrl: null,
       features: [
         "Secure file storage with end-to-end encryption",
         "Real-time file synchronization across devices",
@@ -556,10 +565,19 @@ const ProjectDetail = () => {
             </div>
 
             <div className="flex gap-4">
-              <Button className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 px-8 py-3 text-lg font-semibold rounded-xl shadow-2xl hover:shadow-blue-500/25 transition-all duration-300 hover:scale-105">
-                <ExternalLink className="mr-2 h-5 w-5" />
-                Live Demo
-              </Button>
+              {project.demoUrl ? (
+                <Link to={project.demoUrl}>
+                  <Button className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 px-8 py-3 text-lg font-semibold rounded-xl shadow-2xl hover:shadow-blue-500/25 transition-all duration-300 hover:scale-105">
+                    <ExternalLink className="mr-2 h-5 w-5" />
+                    Live Demo
+                  </Button>
+                </Link>
+              ) : (
+                <Button disabled className="bg-gray-600 cursor-not-allowed px-8 py-3 text-lg font-semibold rounded-xl">
+                  <ExternalLink className="mr-2 h-5 w-5" />
+                  Demo Coming Soon
+                </Button>
+              )}
               <Button variant="outline" className="border-2 border-slate-600/50 text-slate-300 hover:bg-slate-800/50 hover:border-slate-500 px-8 py-3 text-lg font-semibold rounded-xl backdrop-blur-sm transition-all duration-300 hover:scale-105">
                 <Github className="mr-2 h-5 w-5" />
                 View Code
