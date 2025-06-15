@@ -6,13 +6,37 @@ import { Card, CardContent } from '@/components/ui/card';
 
 export const ResumeDownload: React.FC = () => {
   const handleDownload = () => {
-    // In a real implementation, this would download an actual PDF
+    // Create a simple resume content as a downloadable file
+    const resumeContent = `
+IBRAHIM RABIU - SOFTWARE DEVELOPER
+
+SKILLS & EXPERTISE:
+• Artificial Intelligence & Machine Learning
+• Blockchain Development & Smart Contracts
+• Full-Stack Web Development
+• React, TypeScript, Node.js
+• Python, Solidity, Web3
+• Database Design & Management
+• API Development & Integration
+• Cloud Computing & DevOps
+
+CONTACT:
+Email: ibrahim.rabiu@example.com
+Portfolio: Available online
+Location: Available for remote work
+
+This is a sample resume. Please contact for detailed CV.
+    `;
+
+    const blob = new Blob([resumeContent], { type: 'text/plain' });
+    const url = URL.createObjectURL(blob);
     const link = document.createElement('a');
-    link.href = '/resume-ibrahim-rabiu.pdf'; // This would be a real PDF file
-    link.download = 'Ibrahim-Rabiu-Resume.pdf';
+    link.href = url;
+    link.download = 'Ibrahim-Rabiu-Resume-2025.txt';
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
+    URL.revokeObjectURL(url);
   };
 
   return (
@@ -44,7 +68,7 @@ export const ResumeDownload: React.FC = () => {
         </Button>
         
         <p className="text-xs text-slate-500 mt-4">
-          PDF Format • Updated January 2024 • 2 Pages
+          TXT Format • Updated January 2025 • Sample Resume
         </p>
       </CardContent>
     </Card>
