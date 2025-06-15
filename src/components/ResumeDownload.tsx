@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Download, FileText, Star } from 'lucide-react';
@@ -55,7 +54,6 @@ This is a sample resume. Please contact for detailed CV.
           {[...Array(5)].map((_, i) => (
             <Star key={i} className="h-4 w-4 fill-yellow-400 text-yellow-400" />
           ))}
-          <span className="ml-2 text-sm text-slate-400">Professional Format</span>
         </div>
 
         <Button 
