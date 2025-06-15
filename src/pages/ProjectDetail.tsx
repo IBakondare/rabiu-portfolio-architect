@@ -1,4 +1,4 @@
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, useNavigate } from 'react-router-dom';
 import { ArrowLeft, ExternalLink, Github, Calendar, User, Zap, CheckCircle, AlertTriangle, Target, Code, Database, Cloud, Lock, Users, BarChart3, Smartphone, MessageSquare, Search, HardDrive } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
@@ -6,7 +6,8 @@ import { Badge } from '@/components/ui/badge';
 
 const ProjectDetail = () => {
   const { id } = useParams();
-
+  const navigate = useNavigate();
+  
   const projects = [
     {
       id: 1,
@@ -55,48 +56,31 @@ const ProjectDetail = () => {
     },
     {
       id: 2,
-      title: "Blockchain Supply Chain",
-      description: "Decentralized supply chain management system ensuring transparency and traceability.",
-      fullDescription: "A revolutionary blockchain-based supply chain management system that provides end-to-end transparency and traceability for products throughout their entire lifecycle. Built on Ethereum with smart contracts for automated verification and tracking, this system eliminates fraud and ensures product authenticity from manufacturer to consumer.",
-      tech: ["Node.js", "Ethereum", "Solidity", "React", "TypeScript"],
-      image: "https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=600&h=400&fit=crop",
-      category: "Blockchain",
-      duration: "12 months",
-      role: "Blockchain Architect",
-      gradient: "from-purple-600 to-pink-500",
-      demoUrl: "/demo/blockchain",
+      title: "Smart Todo App with Reminders",
+      description: "Advanced todo application with WhatsApp and phone call reminders, priority management, and intelligent scheduling features.",
+      longDescription: "A comprehensive task management solution that goes beyond traditional todo apps. Features intelligent reminders through WhatsApp messages and automated phone calls, ensuring you never miss important deadlines. The application includes priority-based task organization, category management, advanced search and filtering, and persistent data storage. Built with modern React patterns and integrated with communication APIs for seamless reminder delivery.",
+      tech: ["React", "Node.js", "Twilio API", "MongoDB", "TypeScript"],
+      category: "Productivity",
+      complexity: "Advanced",
+      image: "https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=800&h=600&fit=crop",
       features: [
-        "Smart contract automation for verification processes",
-        "Real-time tracking with IoT device integration",
-        "Immutable audit trails for complete transparency",
-        "Multi-stakeholder dashboard with role-based access",
-        "Automated compliance reporting and alerts",
-        "QR code scanning for consumer verification",
-        "Integration with existing ERP systems",
-        "Multi-currency payment processing"
+        "Smart WhatsApp Reminders",
+        "Automated Phone Call Alerts", 
+        "Priority-Based Task Management",
+        "Category Organization",
+        "Advanced Search & Filtering",
+        "Due Date Tracking",
+        "Progress Analytics",
+        "Multi-Device Sync"
       ],
-      challenges: [
-        "Designing gas-efficient smart contracts to minimize costs",
-        "Integrating with legacy supply chain management systems",
-        "Ensuring data privacy while maintaining transparency",
-        "Handling high transaction volumes during peak periods",
-        "Creating user-friendly interfaces for non-technical users"
-      ],
-      outcomes: [
-        "Reduced fraud by 85% in pilot programs across 3 industries",
-        "Improved supply chain visibility by 95% for all stakeholders",
-        "Cost reduction of 30% in verification and audit processes",
-        "Deployment across 200+ companies in manufacturing sector",
-        "Featured in Blockchain Innovation Awards 2023"
-      ],
-      technicalDetails: {
-        blockchain: "Ethereum mainnet with Layer 2 scaling solutions",
-        smartContracts: "Solidity 0.8+ with OpenZeppelin security standards",
-        frontend: "React with Web3.js integration and MetaMask support",
-        backend: "Node.js with Express and MongoDB for off-chain data",
-        security: "Multi-signature wallets and automated security audits",
-        deployment: "IPFS for decentralized storage and Infura for node access"
-      }
+      techDetails: {
+        frontend: "React with TypeScript, modern hooks, responsive design",
+        backend: "Node.js with Express, RESTful API architecture", 
+        database: "MongoDB with efficient indexing and data persistence",
+        integrations: "Twilio API for WhatsApp and voice call functionality",
+        authentication: "Local storage with user session management"
+      },
+      demoUrl: "/demo/todo-app"
     },
     {
       id: 3,

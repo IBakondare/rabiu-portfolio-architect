@@ -1,3 +1,4 @@
+
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -16,6 +17,7 @@ import SocialMediaDemo from "./pages/demos/SocialMediaDemo";
 import ChatbotDemo from "./pages/demos/ChatbotDemo";
 import WebScrapingDemo from "./pages/demos/WebScrapingDemo";
 import CloudStorageDemo from "./pages/demos/CloudStorageDemo";
+import TodoDemo from "./pages/demos/TodoDemo";
 
 const queryClient = new QueryClient();
 
@@ -30,6 +32,7 @@ const App = () => (
           <Route path="/project/:id" element={<ProjectDetail />} />
           <Route path="/demo/ai-tutoring" element={<AITutoringDemo />} />
           <Route path="/demo/blockchain" element={<BlockchainDemo />} />
+          <Route path="/demo/todo-app" element={<TodoDemo />} />
           <Route path="/demo/elearning" element={<ELearningDemo />} />
           <Route path="/demo/analytics" element={<AnalyticsDemo />} />
           <Route path="/demo/fintech" element={<FinTechDemo />} />

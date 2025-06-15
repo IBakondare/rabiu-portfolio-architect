@@ -1,13 +1,15 @@
 import { useState, useEffect } from 'react';
-import { ArrowRight, Github, Linkedin, Twitter, Mail, Phone, Code, Brain, Database, Server, Globe, ChevronDown, ExternalLink, Zap, Users, Award, BookOpen, Sparkles, TrendingUp, Shield, Rocket } from 'lucide-react';
+import { ArrowRight, Github, Linkedin, Twitter, Mail, Phone, Code, Brain, Database, Server, Globe, ChevronDown, ExternalLink, Zap, Users, Award, BookOpen, Sparkles, TrendingUp, Shield, Rocket, Calendar, CheckSquare } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Link } from 'react-router-dom';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 
 const Index = () => {
   const [activeSection, setActiveSection] = useState('home');
   const [isScrolled, setIsScrolled] = useState(false);
+  const [selectedMeetingType, setSelectedMeetingType] = useState('');
 
   useEffect(() => {
     const handleScroll = () => {
@@ -30,13 +32,13 @@ const Index = () => {
     },
     {
       id: 2,
-      title: "Blockchain Supply Chain",
-      description: "Decentralized supply chain management system ensuring transparency and traceability throughout the product lifecycle.",
-      tech: ["Node.js", "Ethereum", "Solidity", "React", "TypeScript"],
-      category: "Blockchain",
-      complexity: "Expert",
-      image: "https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=600&h=400&fit=crop",
-      gradient: "from-purple-600 to-pink-500"
+      title: "Smart Todo App with Reminders",
+      description: "Advanced todo application with WhatsApp and phone call reminders, priority management, and intelligent scheduling features.",
+      tech: ["React", "Node.js", "Twilio API", "MongoDB", "TypeScript"],
+      category: "Productivity",
+      complexity: "Advanced",
+      image: "https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=600&h=400&fit=crop",
+      gradient: "from-green-600 to-blue-500"
     },
     {
       id: 3,
@@ -173,6 +175,22 @@ const Index = () => {
     { number: "15+", label: "Technologies Mastered", icon: Code }
   ];
 
+  const meetingTypes = [
+    { value: 'ai-consultation', label: 'AI & Machine Learning Consultation (60 min)' },
+    { value: 'software-review', label: 'Software Architecture Review (45 min)' },
+    { value: 'technical-mentoring', label: 'Technical Mentoring Session (30 min)' },
+    { value: 'project-discussion', label: 'Project Discussion & Planning (30 min)' },
+    { value: 'training-consultation', label: 'Training Program Consultation (45 min)' }
+  ];
+
+  const openCalendly = () => {
+    if (selectedMeetingType) {
+      window.open(`https://calendly.com/alhibb/${selectedMeetingType}`, '_blank');
+    } else {
+      window.open('https://calendly.com/alhibb', '_blank');
+    }
+  };
+
   const scrollToSection = (sectionId: string) => {
     setActiveSection(sectionId);
     const element = document.getElementById(sectionId);
@@ -193,7 +211,7 @@ const Index = () => {
               AI Engineer
             </div>
             <div className="hidden md:flex space-x-12">
-              {['Home', 'About', 'Projects', 'Services', 'Contact'].map((item) => (
+              {['Home', 'About', 'Projects', 'Services', 'Booking', 'Contact'].map((item) => (
                 <button
                   key={item}
                   onClick={() => scrollToSection(item.toLowerCase())}
@@ -467,6 +485,114 @@ const Index = () => {
                 </CardContent>
               </Card>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Book Meeting Section */}
+      <section id="booking" className="py-32 bg-gradient-to-br from-slate-900 to-slate-800">
+        <div className="max-w-8xl mx-auto px-6 lg:px-12">
+          <div className="text-center mb-24">
+            <h2 className="text-6xl md:text-7xl font-black mb-8 bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">
+              Book a Meeting
+            </h2>
+            <p className="text-2xl text-slate-300 max-w-4xl mx-auto font-light">
+              Ready to discuss your project or need expert guidance? 
+              <span className="font-semibold text-white block mt-4">Schedule a consultation tailored to your needs.</span>
+            </p>
+          </div>
+          
+          <div className="max-w-4xl mx-auto">
+            <Card className="bg-gradient-to-br from-slate-800/50 to-slate-700/30 border-slate-600/50 backdrop-blur-sm">
+              <CardHeader className="text-center pb-8">
+                <div className="w-20 h-20 bg-gradient-to-br from-cyan-500 to-blue-500 rounded-3xl flex items-center justify-center mx-auto mb-6 shadow-2xl">
+                  <Calendar className="h-10 w-10 text-white" />
+                </div>
+                <CardTitle className="text-3xl text-white font-bold">Schedule Your Session</CardTitle>
+                <CardDescription className="text-slate-300 text-lg">
+                  Choose the type of meeting that best fits your needs and book directly through Calendly
+                </CardDescription>
+              </CardHeader>
+              <CardContent className="space-y-8">
+                <div>
+                  <label className="block text-sm font-medium text-slate-300 mb-4">
+                    Select Meeting Type
+                  </label>
+                  <Select value={selectedMeetingType} onValueChange={setSelectedMeetingType}>
+                    <SelectTrigger className="bg-slate-700/50 border-slate-600 text-white">
+                      <SelectValue placeholder="Choose a consultation type..." />
+                    </SelectTrigger>
+                    <SelectContent className="bg-slate-800 border-slate-600">
+                      {meetingTypes.map((type) => (
+                        <SelectItem key={type.value} value={type.value} className="text-white hover:bg-slate-700">
+                          {type.label}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </div>
+                
+                <div className="grid md:grid-cols-2 gap-8">
+                  <div className="space-y-4">
+                    <h3 className="text-xl font-semibold text-white">What to Expect:</h3>
+                    <ul className="space-y-2 text-slate-300">
+                      <li className="flex items-start">
+                        <div className="w-2 h-2 bg-cyan-400 rounded-full mt-2 mr-3 flex-shrink-0"></div>
+                        Personalized expert advice
+                      </li>
+                      <li className="flex items-start">
+                        <div className="w-2 h-2 bg-cyan-400 rounded-full mt-2 mr-3 flex-shrink-0"></div>
+                        Technical solution planning
+                      </li>
+                      <li className="flex items-start">
+                        <div className="w-2 h-2 bg-cyan-400 rounded-full mt-2 mr-3 flex-shrink-0"></div>
+                        Project roadmap development
+                      </li>
+                      <li className="flex items-start">
+                        <div className="w-2 h-2 bg-cyan-400 rounded-full mt-2 mr-3 flex-shrink-0"></div>
+                        Implementation guidance
+                      </li>
+                    </ul>
+                  </div>
+                  
+                  <div className="space-y-4">
+                    <h3 className="text-xl font-semibold text-white">Available Formats:</h3>
+                    <ul className="space-y-2 text-slate-300">
+                      <li className="flex items-start">
+                        <div className="w-2 h-2 bg-blue-400 rounded-full mt-2 mr-3 flex-shrink-0"></div>
+                        Video conference (Zoom/Google Meet)
+                      </li>
+                      <li className="flex items-start">
+                        <div className="w-2 h-2 bg-blue-400 rounded-full mt-2 mr-3 flex-shrink-0"></div>
+                        Phone consultation
+                      </li>
+                      <li className="flex items-start">
+                        <div className="w-2 h-2 bg-blue-400 rounded-full mt-2 mr-3 flex-shrink-0"></div>
+                        Screen sharing for code review
+                      </li>
+                      <li className="flex items-start">
+                        <div className="w-2 h-2 bg-blue-400 rounded-full mt-2 mr-3 flex-shrink-0"></div>
+                        Follow-up resources included
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+                
+                <div className="text-center pt-6">
+                  <Button 
+                    size="lg" 
+                    onClick={openCalendly}
+                    className="bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-700 hover:to-blue-700 text-white px-12 py-4 text-xl font-semibold rounded-2xl shadow-2xl hover:shadow-cyan-500/25 transition-all duration-300 hover:scale-105"
+                  >
+                    <Calendar className="mr-3 h-6 w-6" />
+                    Book Meeting Now
+                  </Button>
+                  <p className="text-slate-400 text-sm mt-4">
+                    Powered by Calendly • Instant confirmation
+                  </p>
+                </div>
+              </CardContent>
+            </Card>
           </div>
         </div>
       </section>
