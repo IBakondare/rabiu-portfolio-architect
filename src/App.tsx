@@ -18,6 +18,7 @@ import ChatbotDemo from "./pages/demos/ChatbotDemo";
 import WebScrapingDemo from "./pages/demos/WebScrapingDemo";
 import CloudStorageDemo from "./pages/demos/CloudStorageDemo";
 import TodoDemo from "./pages/demos/TodoDemo";
+import LiveChatWidget from "./components/LiveChatWidget";
 
 const queryClient = new QueryClient();
 
@@ -44,6 +45,7 @@ const App = () => (
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}  
           <Route path="*" element={<NotFound />} />
         </Routes>
+        <LiveChatWidget />
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>
